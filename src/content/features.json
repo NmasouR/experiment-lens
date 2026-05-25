@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "title": "Features — ExperimentLens",
+    "description": "Every capability ExperimentLens ships: parallel-coordinates run analysis, comparative views, explainability (PDP, ALE, counterfactuals), experiment catalogue, workflow drill-down and an extensible adapter API.",
+    "ogTitle": "Features — ExperimentLens",
+    "ogDescription": "The full feature surface of ExperimentLens — visual analytics & explainability for ML experiments."
+  },
+  "hero": {
+    "eyebrow": "Features",
+    "title": "The full surface of ExperimentLens.",
+    "subtitle": "ExperimentLens is the <strong>visualization layer</strong> on top of your MLflow tracking server and Kubeflow execution engine. It doesn't compute metrics for you — it makes every metric, parameter and artifact <em>you</em> log explorable, comparable and explainable."
+  },
+  "showcase": {
+    "eyebrow": "Capabilities",
+    "title": "What you can do in ExperimentLens.",
+    "subtitle": "",
+    "features": [
+      {
+        "eyebrow": "Run & configuration analysis",
+        "title": "Hundreds of runs, one parallel-coordinates plot.",
+        "body": "Sort, filter and group runs by any parameter or by any metric you logged to MLflow. The linked parallel-coordinates view reveals which configuration choices actually move the numbers you care about.",
+        "bullets": [
+          "Multi-axis parallel coordinates with brushing",
+          "Group-by variability points (criterion, normalization, …)",
+          "Live filtering between table and chart"
+        ],
+        "image": "screenOverview"
+      },
+      {
+        "eyebrow": "Comparative analysis",
+        "title": "Compare runs side-by-side across metrics, models and data.",
+        "body": "Select any subset of runs and switch between Metrics, Models and Data tabs. Mosaic and stacked layouts let you spot regressions and tradeoffs in the metrics you logged.",
+        "bullets": [
+          "Mosaic & stacked metric layouts",
+          "Cross-run model & dataset diffs",
+          "Status-aware comparison (completed / scheduled)"
+        ],
+        "image": "screenComparative"
+      },
+      {
+        "eyebrow": "Explainability",
+        "title": "PDP, ALE and feature importance — wired to your runs.",
+        "body": "Open the Explainability tab to see global and local post-hoc explanations attached to the same experiment context. No notebooks, no glue code.",
+        "bullets": [
+          "Feature importance per variability point",
+          "Partial Dependence Plots (PDP)",
+          "Accumulated Local Effects (ALE) & counterfactuals"
+        ],
+        "image": "screenExplainability"
+      },
+      {
+        "eyebrow": "Experiments catalogue",
+        "title": "Every experiment, every workflow, in one place.",
+        "body": "A central catalogue of all tracked experiments with status, owner and last-update — backed by MLflow runs and Kubeflow pipeline executions.",
+        "bullets": [
+          "MLflow- and Kubeflow-backed runs unified",
+          "Search & status filtering",
+          "One click into the full experiment view"
+        ],
+        "image": "screenExperiments"
+      },
+      {
+        "eyebrow": "Workflow details",
+        "title": "Drill into a single workflow's parameters, metrics & artifacts.",
+        "body": "Inspect the exact parameters, metrics and artifacts that the run logged to MLflow. Ratings and status help curate the runs that matter.",
+        "bullets": [
+          "Parameters, metrics & artifacts pane",
+          "Run rating & status surfacing",
+          "Direct link from any comparative view"
+        ],
+        "image": "screenWorkflow"
+      }
+    ]
+  },
+  "deep": {
+    "eyebrow": "In depth",
+    "title": "The full feature surface.",
+    "subtitle": "Everything ExperimentLens currently ships, at a glance.",
+    "kubeflowBadge": "Kubeflow only",
+    "items": [
+      { "icon": "GitCompare", "title": "Comparative analysis", "body": "Mosaic & stacked layouts to diff metrics, models and datasets across selected runs." },
+      { "icon": "Sliders", "title": "Variability points", "body": "Treat hyperparameters and engine settings as first-class axes you can group, color and filter by." },
+      { "icon": "Filter", "title": "Linked filtering", "body": "Brush the chart, the table follows. Filter the table, the chart updates. One mental model." },
+      { "icon": "LineChart", "title": "Any metric you log", "body": "Every metric ExperimentLens shows comes from what your runs log to MLflow — accuracy, fairness, latency, custom KPIs. Nothing is hard-coded." },
+      { "icon": "Activity", "title": "Pipeline monitoring", "body": "Track pipeline progress (completed / running / failed) and steer human-in-the-loop refinements.", "kubeflowOnly": true },
+      { "icon": "Database", "title": "Artifact & data inspection", "body": "Preview inputs, outputs, predictions and intermediate artifacts in context with the run." },
+      { "icon": "Lightbulb", "title": "Counterfactuals & PDP / ALE", "body": "Apply post-hoc explainability methods directly inside the experiment context." },
+      { "icon": "Boxes", "title": "Extensible adapter API", "body": "Add a new tracker or engine without touching the frontend — the adapter contract is the only seam." },
+      { "icon": "Layers", "title": "Human-in-the-loop", "body": "Use diagnostic views to adjust configurations and re-launch refined pipelines as part of the same experiment.", "kubeflowOnly": true }
+    ]
+  },
+  "cta": {
+    "title": "See these features on a real experiment.",
+    "subtitle": "A public deployment running a real fairness-aware classification experiment.",
+    "primary": "Open the live demo",
+    "secondary": "Source on GitHub",
+    "tertiary": "Docs"
+  }
+}

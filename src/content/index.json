@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "ExperimentLens — Visual analytics & explainability for ML experiments",
+    "description": "An extensible visual analytics dashboard for ML experiments. Plug in MLflow as a tracker and Kubeflow as an execution engine, then compare runs, inspect data, and explain models — all in one UI."
+  },
+  "hero": {
+    "badge": "ExtremeXP · Horizon Europe project",
+    "titlePre": "Explore, monitor and",
+    "titleHighlight": "explain",
+    "titlePost": "complex ML pipelines.",
+    "subtitle": "ExperimentLens is a lightweight visual dashboard for ML experiment management. Plug in <strong>MLflow</strong> as your tracker and <strong>Kubeflow</strong> as your execution engine, then compare hundreds of runs, inspect datasets and artifacts, and apply explainability methods — all from one UI.",
+    "primaryCta": "Open live demo",
+    "secondaryCta": "Create your first experiment",
+    "imageAlt": "ExperimentLens overview dashboard with parallel coordinates plot across 108 runs",
+    "imageCaption": "Overview tab — 108 runs of a fairness-aware classification experiment, parallel coordinates linked to the runs table."
+  },
+  "valueProps": {
+    "eyebrow": "Why ExperimentLens",
+    "title": "A single lens over your entire ML experimentation loop.",
+    "subtitle": "From orchestration to explanation — without leaving the browser.",
+    "items": [
+      {
+        "icon": "Plug",
+        "title": "Tracker- & engine-agnostic",
+        "body": "Adapter interface to MLflow today, with Kubeflow as the execution engine. Airflow and other backends are on the roadmap."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Visual analytics, not just tables",
+        "body": "Parallel coordinates, comparative metric views, group-by, filters and color encodings — designed to make 100s of runs legible at a glance."
+      },
+      {
+        "icon": "Lightbulb",
+        "title": "Explainability built-in",
+        "body": "Feature importance, Partial Dependence (PDP), Accumulated Local Effects (ALE) and counterfactual views wired directly to your runs."
+      }
+    ]
+  },
+  "featuresPreview": {
+    "eyebrow": "Features",
+    "title": "Built for the whole experiment lifecycle.",
+    "subtitle": "From first run to final explanation — everything in one UI.",
+    "slides": [
+      { "title": "Visualize the metrics you log.", "image": "screenOverview" },
+      { "title": "Browse and compare experiments.", "image": "screenExperiments" },
+      { "title": "Analyze runs side-by-side.", "image": "screenComparative" },
+      { "title": "Explain your model decisions.", "image": "screenExplainability" },
+      { "title": "Inspect your workflows.", "image": "screenWorkflow" }
+    ],
+    "exploreCta": "Explore all features"
+  },
+  "integrations": {
+    "eyebrow": "Integrations",
+    "title": "Works with the stack you already run.",
+    "subtitle": "ExperimentLens consumes runs from your tracker and orchestrates them through your engine.",
+    "cards": [
+      {
+        "icon": "LineChart",
+        "tag": "Tracker",
+        "name": "MLflow",
+        "body": "Logs runs, parameters, metrics and artifacts. ExperimentLens reads MLflow experiments directly so every visualization, comparison and explanation maps back to a real MLflow run.",
+        "points": [
+          "Experiment & run discovery",
+          "Parameters, metrics, tags & artifacts",
+          "Per-run lineage into the UI"
+        ]
+      },
+      {
+        "icon": "Workflow",
+        "tag": "Execution engine",
+        "name": "Kubeflow",
+        "body": "Runs the underlying pipelines on Kubernetes. ExperimentLens surfaces Kubeflow pipeline executions as first-class workflows you can inspect, compare and explain.",
+        "points": [
+          "Kubeflow Pipelines as experiments",
+          "Task-level status & artifact tracking",
+          "Re-launch / steer modified pipelines"
+        ]
+      }
+    ],
+    "footnote": "Adapter-based design — additional trackers and engines (e.g. Airflow) can be added without changing the UI."
+  },
+  "howItWorks": {
+    "eyebrow": "How it works",
+    "title": "From pipeline to insight in three steps.",
+    "steps": [
+      { "n": "01", "icon": "Workflow", "title": "Orchestrate", "body": "Author your experiment as a Kubeflow pipeline. ExperimentLens picks it up as a first-class workflow." },
+      { "n": "02", "icon": "LineChart", "title": "Track", "body": "Each run logs parameters, metrics and artifacts to MLflow — automatically surfaced in the dashboard." },
+      { "n": "03", "icon": "Eye", "title": "Explore & explain", "body": "Compare runs visually, drill into artifacts and apply explainability methods without leaving the UI." }
+    ],
+    "architecture": [
+      { "icon": "Workflow", "title": "Kubeflow", "sub": "Execution engine" },
+      { "icon": "LineChart", "title": "MLflow", "sub": "Tracking server" },
+      { "icon": "Server", "title": "vis-api", "sub": "Adapter & REST" },
+      { "icon": "Eye", "title": "ExperimentLens", "sub": "vis-frontend UI" }
+    ]
+  },
+  "demoStrip": {
+    "eyebrow": "Live showcase",
+    "title": "See it on a real experiment.",
+    "subtitle": "A public deployment running a 108-run fairness experiment.",
+    "cards": [
+      { "title": "Fairness-aware classification", "sub": "108 runs · parallel coordinates", "image": "screenOverview" },
+      { "title": "Side-by-side comparison", "sub": "Mosaic vs stacked metrics", "image": "screenComparative" },
+      { "title": "Explainability surface", "sub": "Feature importance · PDP · ALE", "image": "screenExplainability" }
+    ],
+    "cta": "Open the live demo"
+  },
+  "repos": {
+    "eyebrow": "Open source",
+    "title": "Three repositories, one platform.",
+    "subtitle": "ExperimentLens is developed in the open within the ExtremeXP project.",
+    "viewCta": "View on GitHub",
+    "items": [
+      { "name": "vis-frontend", "desc": "The ExperimentLens React frontend — dashboards, charts and explainability views.", "repoKey": "frontend" },
+      { "name": "vis-api", "desc": "Backend adapter API connecting MLflow, Kubeflow and the frontend.", "repoKey": "api" },
+      { "name": "extremexp-explainability-module", "desc": "Explainability methods (PDP, ALE, feature importance, counterfactuals) powering the Explainability tab.", "repoKey": "explain" }
+    ]
+  },
+  "footer": {
+    "tagline": "Visual analytics & explainability for ML experiments. Built within the ExtremeXP project.",
+    "copyright": "ExperimentLens · ExtremeXP consortium.",
+    "columns": [
+      {
+        "title": "Product",
+        "links": [
+          { "label": "Features", "href": "#features" },
+          { "label": "Integrations", "href": "#integrations" },
+          { "label": "How it works", "href": "#how" },
+          { "label": "Live demo", "hrefKey": "liveDemo", "external": true }
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          { "label": "Docs", "href": "/docs", "internal": true },
+          { "label": "vis-frontend", "hrefKey": "repoFrontend", "external": true },
+          { "label": "vis-api", "hrefKey": "repoApi", "external": true },
+          { "label": "Explainability module", "hrefKey": "repoExplain", "external": true }
+        ]
+      },
+      {
+        "title": "Project",
+        "links": [
+          { "label": "ATHENA Research Center", "href": "https://www.athenarc.gr/", "external": true },
+          { "label": "ExtremeXP (Horizon Europe)", "href": "https://extremexp.eu/", "external": true }
+        ]
+      }
+    ]
+  }
+}

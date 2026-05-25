@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "title": "Docs — ExperimentLens",
+    "description": "ExperimentLens documentation: quick start, building the app, example experiments with MLflow and Kubeflow, and an explainability guide."
+  },
+  "header": {
+    "back": "Back to home",
+    "brand": "ExperimentLens · Docs"
+  },
+  "intro": {
+    "eyebrow": "Documentation",
+    "title": "ExperimentLens docs",
+    "body": "Learn how to run ExperimentLens, build the app from source, ship your first experiment with MLflow and Kubeflow, and understand what the explainability views are telling you."
+  },
+  "groups": ["Getting started", "Experiments", "Concepts"],
+  "sections": [
+    { "id": "overview", "title": "Overview", "icon": "Rocket", "group": "Getting started" },
+    { "id": "build-app", "title": "Build the app", "icon": "Hammer", "group": "Getting started" },
+    { "id": "quick-start", "title": "Quick start", "icon": "Terminal", "group": "Getting started" },
+    { "id": "exp-mlflow-basic", "title": "MLflow: metrics & params", "icon": "FlaskConical", "group": "Experiments" },
+    { "id": "exp-mlflow-explain", "title": "MLflow + explainability", "icon": "Sparkles", "group": "Experiments" },
+    { "id": "exp-kubeflow", "title": "MLflow + Kubeflow", "icon": "Workflow", "group": "Experiments" },
+    { "id": "exp-kubeflow-actions", "title": "Kubeflow-only actions", "icon": "Zap", "group": "Experiments" },
+    { "id": "explainability", "title": "How explainability works", "icon": "Brain", "group": "Concepts" }
+  ],
+  "docSections": [
+    {
+      "id": "overview",
+      "eyebrow": "Getting started",
+      "title": "Overview",
+      "description": "Run ExperimentLens locally against an existing MLflow deployment in a few minutes."
+    },
+    {
+      "id": "build-app",
+      "eyebrow": "Getting started",
+      "title": "Build the app",
+      "description": "Build the frontend, API and explainability module from source — useful for self-hosting and contributing.",
+      "subBlocks": ["Prerequisites", "Clone the repositories", "Configure environment", "Run the stack"]
+    },
+    {
+      "id": "quick-start",
+      "eyebrow": "Getting started",
+      "title": "Quick start",
+      "description": "A concise step-by-step guide to get ExperimentLens running in minutes.",
+      "subBlocks": ["Start the services", "Connect to MLflow", "Open the UI"]
+    },
+    {
+      "id": "exp-mlflow-basic",
+      "eyebrow": "Experiments",
+      "title": "A simple MLflow experiment",
+      "description": "Log parameters and metrics to MLflow and open the run in ExperimentLens.",
+      "subBlocks": ["Set up MLflow tracking", "Log params & metrics", "View the run in ExperimentLens"]
+    },
+    {
+      "id": "exp-mlflow-explain",
+      "eyebrow": "Experiments",
+      "title": "MLflow experiment with explainability",
+      "description": "Extend the previous example to also log explainability artifacts the module can consume.",
+      "subBlocks": ["Install the explainability module", "Generate & log explanations", "Inspect explanations in the UI"]
+    },
+    {
+      "id": "exp-kubeflow",
+      "eyebrow": "Experiments",
+      "title": "MLflow + Kubeflow",
+      "description": "Wrap the same experiment as a Kubeflow pipeline, track runs in MLflow, and view the orchestrated workflow in ExperimentLens.",
+      "subBlocks": ["Author the Kubeflow pipeline", "Connect MLflow tracking", "Submit & monitor runs", "Compare runs across configurations"]
+    },
+    {
+      "id": "exp-kubeflow-actions",
+      "eyebrow": "Experiments",
+      "title": "Kubeflow-only actions",
+      "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by Kubeflow.",
+      "subBlocks": ["Start and stop a run", "Create a new run from the UI", "Spawn a workflow from counterfactuals"]
+    },
+    {
+      "id": "explainability",
+      "eyebrow": "Concepts",
+      "title": "How explainability works",
+      "description": "What ExperimentLens computes, how to read the charts, and what the answers actually mean.",
+      "subBlocks": ["What we explain (and what we don't)", "Feature importance", "SHAP values", "Reading the model card", "Fairness metrics"]
+    }
+  ],
+  "placeholderNote": "This is a structural placeholder — the project team will fill in commands, code snippets and screenshots for each section.",
+  "subBlockPlaceholder": "Content to be added.",
+  "emptySectionPlaceholder": "Content to be added."
+}

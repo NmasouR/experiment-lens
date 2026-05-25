@@ -1,0 +1,16 @@
+{
+  "brand": "ExperimentLens",
+  "liveDemoUrl": "https://extreme-viz.pulsar.imsi.athenarc.gr/706300898836261706/monitoring",
+  "repos": {
+    "frontend": "https://github.com/extremexp-HORIZON/vis-frontend",
+    "api": "https://github.com/extremexp-HORIZON/vis-api",
+    "explain": "https://github.com/extremexp-HORIZON/extremexp-explainability-module"
+  },
+  "browserFrameUrl": "extreme-viz.pulsar.imsi.athenarc.gr / experimentlens",
+  "nav": {
+    "features": "Features",
+    "docs": "Docs",
+    "liveDemo": "Live demo",
+    "github": "GitHub"
+  }
+}
