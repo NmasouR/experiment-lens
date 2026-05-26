@@ -6,7 +6,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 import path from "node:path";
 
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/experiment-lens/" : "/",
+  base: "/experiment-lens/",
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src") },
     dedupe: [
