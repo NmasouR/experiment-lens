@@ -80,7 +80,6 @@
       "subBlocks": ["What we explain (and what we don't)", "Feature importance", "SHAP values", "Reading the model card", "Fairness metrics"]
     }
   ],
-  "placeholderNote": "This is a structural placeholder — the project team will fill in commands, code snippets and screenshots for each section.",
   "subBlockPlaceholder": "Content to be added.",
   "emptySectionPlaceholder": "Content to be added."
 }

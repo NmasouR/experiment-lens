@@ -1,14 +1,14 @@
 {
   "meta": {
     "title": "ExperimentLens — Visual analytics & explainability for ML experiments",
-    "description": "An extensible visual analytics dashboard for ML experiments. Plug in MLflow as a tracker and Kubeflow as an execution engine, then compare runs, inspect data, and explain models — all in one UI."
+    "description": "An extensible visual analytics dashboard for ML experiments. Plug in your tracker and your execution engine, then compare runs, inspect data, and explain models — all in one UI."
   },
   "hero": {
     "badge": "ExtremeXP · Horizon Europe project",
     "titlePre": "Explore, monitor and",
     "titleHighlight": "explain",
     "titlePost": "complex ML pipelines.",
-    "subtitle": "ExperimentLens is a lightweight visual dashboard for ML experiment management. Plug in <strong>MLflow</strong> as your tracker and <strong>Kubeflow</strong> as your execution engine, then compare hundreds of runs, inspect datasets and artifacts, and apply explainability methods — all from one UI.",
+    "subtitle": "ExperimentLens is a lightweight visual dashboard for ML experiment management. Plug in your tracker and your execution engine, then compare hundreds of runs, inspect datasets and artifacts, and apply explainability methods — all from one UI.",
     "primaryCta": "Open live demo",
     "secondaryCta": "Create your first experiment",
     "imageAlt": "ExperimentLens overview dashboard with parallel coordinates plot across 108 runs",
