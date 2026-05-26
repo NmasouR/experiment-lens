@@ -1,9 +1,8 @@
 import { defineConfig } from "vite";
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
-import { cloudflare } from "@cloudflare/vite-plugin";
 import path from "node:path";
 
 export default defineConfig(({ command }) => ({
@@ -14,15 +13,13 @@ export default defineConfig(({ command }) => ({
       "react",
       "react-dom",
       "@tanstack/react-router",
-      "@tanstack/react-start",
     ],
   },
   plugins: [
     tsConfigPaths(),
     tailwindcss(),
-    tanstackStart({ server: { entry: "server" } }),
+    tanstackRouter(),
     viteReact(),
-    ...(command === "build" ? [cloudflare()] : []),
   ],
   server: { host: "::", port: 8090, strictPort: true },
 }));
