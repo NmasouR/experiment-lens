@@ -8,6 +8,8 @@ import screenComparative from "@/assets/screen-comparative.png";
 import screenExplainability from "@/assets/screen-explainability.png";
 import screenExperiments from "@/assets/screen-experiments.png";
 import screenWorkflow from "@/assets/screen-workflow.png";
+import screenArtifact from "@/assets/screen-artifact.png";
+
 import {
   Carousel,
   CarouselContent,
@@ -24,6 +26,7 @@ const IMAGES: Record<string, string> = {
   screenExplainability,
   screenExperiments,
   screenWorkflow,
+  screenArtifact,
 };
 
 export function FeaturesPreview() {

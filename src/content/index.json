@@ -6,13 +6,13 @@
   "hero": {
     "badge": "ExtremeXP · Horizon Europe project",
     "titlePre": "Explore, monitor and",
-    "titleHighlight": "explain",
+    "titleHighlight": " explain ",
     "titlePost": "complex ML pipelines.",
-    "subtitle": "ExperimentLens is a lightweight visual dashboard for ML experiment management. Plug in your tracker and your execution engine, then compare hundreds of runs, inspect datasets and artifacts, and apply explainability methods — all from one UI.",
+    "subtitle": "ExperimentLens is a lightweight yet powerful visual dashboard for the interactive exploration, monitoring, and explainability of complex AI pipelines.<br/>Developed within the context of the <a href=\"https://extremexp.eu/\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-slate-900 hover:underline\">ExtremeXP project</a>, ExperimentLens empowers researchers, data scientists, and engineers to make sense of experimental results across multiple runs and interconnected tasks.",
     "primaryCta": "Open live demo",
     "secondaryCta": "Create your first experiment",
     "imageAlt": "ExperimentLens overview dashboard with parallel coordinates plot across 108 runs",
-    "imageCaption": "Overview tab — 108 runs of a fairness-aware classification experiment, parallel coordinates linked to the runs table."
+    "imageCaption": "ExperimentLens dashboard: analyzing configuration effects on experiment performance."
   },
   "valueProps": {
     "eyebrow": "Why ExperimentLens",
@@ -42,8 +42,8 @@
     "subtitle": "From first run to final explanation — everything in one UI.",
     "slides": [
       { "title": "Visualize the metrics you log.", "image": "screenOverview" },
-      { "title": "Browse and compare experiments.", "image": "screenExperiments" },
       { "title": "Analyze runs side-by-side.", "image": "screenComparative" },
+      { "title": "Artifact and Data Inspection", "image": "screenArtifact" },
       { "title": "Explain your model decisions.", "image": "screenExplainability" },
       { "title": "Inspect your workflows.", "image": "screenWorkflow" }
     ],
@@ -83,15 +83,14 @@
     "eyebrow": "How it works",
     "title": "From pipeline to insight in three steps.",
     "steps": [
-      { "n": "01", "icon": "Workflow", "title": "Orchestrate", "body": "Author your experiment as a Kubeflow pipeline. ExperimentLens picks it up as a first-class workflow." },
-      { "n": "02", "icon": "LineChart", "title": "Track", "body": "Each run logs parameters, metrics and artifacts to MLflow — automatically surfaced in the dashboard." },
+      { "n": "01", "icon": "Workflow", "title": "Orchestrate", "body": "Author your experiment as an execution engine pipeline. ExperimentLens picks it up as a first-class workflow." },
+      { "n": "02", "icon": "LineChart", "title": "Track", "body": "Each run logs parameters, metrics and artifacts to the tracker — automatically surfaced in the dashboard." },
       { "n": "03", "icon": "Eye", "title": "Explore & explain", "body": "Compare runs visually, drill into artifacts and apply explainability methods without leaving the UI." }
     ],
     "architecture": [
-      { "icon": "Workflow", "title": "Kubeflow", "sub": "Execution engine" },
-      { "icon": "LineChart", "title": "MLflow", "sub": "Tracking server" },
-      { "icon": "Server", "title": "vis-api", "sub": "Adapter & REST" },
-      { "icon": "Eye", "title": "ExperimentLens", "sub": "vis-frontend UI" }
+      { "icon": "Workflow", "title": "Execution engine" },
+      { "icon": "LineChart", "title": "Tracking server" },
+      { "icon": "Eye", "title": "ExperimentLens" }
     ]
   },
   "demoStrip": {
@@ -112,13 +111,13 @@
     "viewCta": "View on GitHub",
     "items": [
       { "name": "vis-frontend", "desc": "The ExperimentLens React frontend — dashboards, charts and explainability views.", "repoKey": "frontend" },
-      { "name": "vis-api", "desc": "Backend adapter API connecting MLflow, Kubeflow and the frontend.", "repoKey": "api" },
-      { "name": "extremexp-explainability-module", "desc": "Explainability methods (PDP, ALE, feature importance, counterfactuals) powering the Explainability tab.", "repoKey": "explain" }
+      { "name": "vis-api", "desc": "Backend adapter API connecting tracker, execution engine and the frontend.", "repoKey": "api" },
+      { "name": "extremexp-explainability-module", "desc": "Explainability methods (PDP, ALE, feature importance, counterfactuals).", "repoKey": "explain" }
     ]
   },
   "footer": {
     "tagline": "Visual analytics & explainability for ML experiments. Built within the ExtremeXP project.",
-    "copyright": "ExperimentLens · ExtremeXP consortium.",
+    "copyright": "ExperimentLens",
     "columns": [
       {
         "title": "Product",

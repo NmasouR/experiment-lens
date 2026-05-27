@@ -8,7 +8,7 @@
   "hero": {
     "eyebrow": "Features",
     "title": "The full surface of ExperimentLens.",
-    "subtitle": "ExperimentLens is the <strong>visualization layer</strong> on top of your MLflow tracking server and Kubeflow execution engine. It doesn't compute metrics for you — it makes every metric, parameter and artifact <em>you</em> log explorable, comparable and explainable."
+    "subtitle": "ExperimentLens is the <strong>visualization layer</strong> on top of your tracking server and execution engine. It makes every metric, parameter and artifact <em>you</em> log explorable, comparable and explainable."
   },
   "showcase": {
     "eyebrow": "Capabilities",

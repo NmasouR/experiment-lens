@@ -8,6 +8,8 @@ import {
   Sliders,
   Boxes,
   LineChart,
+  GitBranch,
+  FileCheck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -24,6 +26,8 @@ const ICONS: Record<string, LucideIcon> = {
   Sliders,
   Boxes,
   LineChart,
+  GitBranch,
+  FileCheck,
 };
 
 function KubeflowBadge() {

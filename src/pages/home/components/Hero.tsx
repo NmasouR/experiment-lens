@@ -12,15 +12,11 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 [background:radial-gradient(60%_50%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]" />
       <div className="relative mx-auto max-w-7xl px-6 pb-14 pt-16 md:pt-24">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
-            <Sparkles className="h-3.5 w-3.5 text-sky-500" />
-            {t.hero.badge}
-          </span>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
-            {t.hero.titlePre}{" "}
+            {t.hero.titlePre}
             <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent">
               {t.hero.titleHighlight}
-            </span>{" "}
+            </span>
             {t.hero.titlePost}
           </h1>
           <p
