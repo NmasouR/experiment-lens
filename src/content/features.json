@@ -17,12 +17,12 @@
     "features": [
       {
         "eyebrow": "Run & configuration analysis",
-        "title": "Hundreds of runs, one parallel-coordinates plot.",
-        "body": "Sort, filter and group runs by any parameter or by any metric you logged to MLflow. The linked parallel-coordinates view reveals which configuration choices actually move the numbers you care about.",
+        "title": "Find the configuration that actually moves the metric.",
+        "body": "Plot hundreds of runs on a single linked parallel-coordinates view. Brush an axis, watch the table filter. Group by any hyperparameter, color by any metric — and see which choices matter before you launch another sweep.",
         "bullets": [
-          "Multi-axis parallel coordinates with brushing",
-          "Group-by variability points (criterion, normalization, …)",
-          "Live filtering between table and chart"
+          "Multi-axis parallel coordinates with live brushing",
+          "Group, color and filter by any logged parameter",
+          "Bidirectional sync between chart and run table"
         ],
         "image": "screenOverview"
       },
@@ -38,9 +38,20 @@
         "image": "screenComparative"
       },
       {
-        "eyebrow": "Explainability",
+        "eyebrow": "Pipeline Control & Steering",
+        "title": "From monitoring to steering.",
+        "body": "Monitor and steer pipeline executions at runtime, guided by intermediate results and visual feedback. Use diagnostic views to adjust configuration choices and re-launch modified pipelines.",
+        "bullets": [
+          "Monitor and steer pipeline executions at runtime",
+          "Guided by intermediate results and visual feedback",
+          "Adjust configuration choices and re-launch modified pipelines"
+        ],
+        "image": "instanceView"
+      },
+      {
+        "eyebrow": "Integrated Explainability",
         "title": "PDP, ALE and feature importance — wired to your runs.",
-        "body": "Open the Explainability tab to see global and local post-hoc explanations attached to the same experiment context. No notebooks, no glue code.",
+        "body": "Open the Explainability tab to see global post-hoc explanations attached to the same experiment context. No notebooks, no glue code.",
         "bullets": [
           "Feature importance per variability point",
           "Partial Dependence Plots (PDP)",
@@ -49,20 +60,9 @@
         "image": "screenExplainability"
       },
       {
-        "eyebrow": "Experiments catalogue",
-        "title": "Every experiment, every workflow, in one place.",
-        "body": "A central catalogue of all tracked experiments with status, owner and last-update — backed by MLflow runs and Kubeflow pipeline executions.",
-        "bullets": [
-          "MLflow- and Kubeflow-backed runs unified",
-          "Search & status filtering",
-          "One click into the full experiment view"
-        ],
-        "image": "screenExperiments"
-      },
-      {
         "eyebrow": "Workflow details",
         "title": "Drill into a single workflow's parameters, metrics & artifacts.",
-        "body": "Inspect the exact parameters, metrics and artifacts that the run logged to MLflow. Ratings and status help curate the runs that matter.",
+        "body": "Inspect the exact parameters, metrics and artifacts that the run logged to the tracking server. Ratings and status help curate the runs that matter.",
         "bullets": [
           "Parameters, metrics & artifacts pane",
           "Run rating & status surfacing",
@@ -76,17 +76,15 @@
     "eyebrow": "In depth",
     "title": "The full feature surface.",
     "subtitle": "Everything ExperimentLens currently ships, at a glance.",
-    "kubeflowBadge": "Kubeflow only",
+    "ExecutionEngineBadge": "Execution engine only",
     "items": [
       { "icon": "GitCompare", "title": "Comparative analysis", "body": "Mosaic & stacked layouts to diff metrics, models and datasets across selected runs." },
-      { "icon": "Sliders", "title": "Variability points", "body": "Treat hyperparameters and engine settings as first-class axes you can group, color and filter by." },
-      { "icon": "Filter", "title": "Linked filtering", "body": "Brush the chart, the table follows. Filter the table, the chart updates. One mental model." },
-      { "icon": "LineChart", "title": "Any metric you log", "body": "Every metric ExperimentLens shows comes from what your runs log to MLflow — accuracy, fairness, latency, custom KPIs. Nothing is hard-coded." },
+      { "icon": "FileCheck", "title": "Run Inspection", "body": "Inspect the exact parameters, metrics and artifacts that the run logged to the tracking server. Ratings and status help curate the runs that matter." },
       { "icon": "Activity", "title": "Pipeline monitoring", "body": "Track pipeline progress (completed / running / failed) and steer human-in-the-loop refinements.", "kubeflowOnly": true },
       { "icon": "Database", "title": "Artifact & data inspection", "body": "Preview inputs, outputs, predictions and intermediate artifacts in context with the run." },
-      { "icon": "Lightbulb", "title": "Counterfactuals & PDP / ALE", "body": "Apply post-hoc explainability methods directly inside the experiment context." },
+      { "icon": "Lightbulb", "title": "Integrated Explainability", "body": "Apply post-hoc explainability methods like counterfactual examples, PDP, and ALE directly inside the experiment context." },
       { "icon": "Boxes", "title": "Extensible adapter API", "body": "Add a new tracker or engine without touching the frontend — the adapter contract is the only seam." },
-      { "icon": "Layers", "title": "Human-in-the-loop", "body": "Use diagnostic views to adjust configurations and re-launch refined pipelines as part of the same experiment.", "kubeflowOnly": true }
+      { "icon": "GitBranch", "title": "Run Steering", "body": "Use diagnostic views to adjust configuration choices and re-launch modified pipelines as part of the same experiment.", "kubeflowOnly": true }
     ]
   },
   "cta": {

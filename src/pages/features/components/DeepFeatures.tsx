@@ -30,10 +30,10 @@ const ICONS: Record<string, LucideIcon> = {
   FileCheck,
 };
 
-function KubeflowBadge() {
+function ExecutionEngineBadge() {
   return (
     <span className="ml-2 inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
-      {t.deep.kubeflowBadge}
+      {t.deep.ExecutionEngineBadge}
     </span>
   );
 }
@@ -62,7 +62,7 @@ export function DeepFeatures() {
                   <h3 className="text-sm font-semibold text-slate-900">
                     {item.title}
                   </h3>
-                  {item.kubeflowOnly && <KubeflowBadge />}
+                  {item.kubeflowOnly && <ExecutionEngineBadge />}
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">
                   {item.body}

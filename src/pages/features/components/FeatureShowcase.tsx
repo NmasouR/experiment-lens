@@ -6,6 +6,7 @@ import screenComparative from "@/assets/screen-comparative.png";
 import screenExplainability from "@/assets/screen-explainability.png";
 import screenExperiments from "@/assets/screen-experiments.png";
 import screenWorkflow from "@/assets/screen-workflow.png";
+import instanceView from "@/assets/instance-view.png";
 import t from "@/content/features.json";
 import { SectionHeader } from "./SectionHeader";
 import { BrowserFrame } from "../../../components/ui/content/BrowserFrame";
@@ -16,6 +17,7 @@ const IMAGES: Record<string, string> = {
   screenExplainability,
   screenExperiments,
   screenWorkflow,
+  instanceView,
 };
 
 type Feature = {
