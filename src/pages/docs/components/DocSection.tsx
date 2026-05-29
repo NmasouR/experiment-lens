@@ -1,28 +1,39 @@
 import t from "@/content/docs.json";
+import screenOverview from "@/assets/screen-overview.png";
 
-function SubBlock({ title }: { title: string }) {
+function SubBlock({ title, content }: { title: string; content?: string }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-5">
       <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
-      <p className="mt-1 text-xs italic text-slate-400">
-        {t.subBlockPlaceholder}
-      </p>
+      <p className="mt-1 text-xs italic text-slate-400"
+        dangerouslySetInnerHTML={{ __html: content || t.subBlockPlaceholder }}
+      />
     </div>
   );
 }
+
+const IMAGES: Record<string, string> = {
+  screenOverview,
+};
+
 
 export function DocSection({
   id,
   eyebrow,
   title,
   description,
+  image,
   subBlocks,
 }: {
   id: string;
   eyebrow: string;
   title: string;
   description: string;
-  subBlocks?: string[];
+  image?: string;
+  subBlocks?: {
+    title: string;
+    content?: string;
+  }[];
 }) {
   return (
     <section id={id} className="scroll-mt-24">
@@ -32,20 +43,23 @@ export function DocSection({
       <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
         {title}
       </h2>
-      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
-        {description}
-      </p>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600"
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+      {image && (
+        <img
+          src={IMAGES[image]}
+          alt={title}
+          className="mt-6 rounded-lg border border-slate-200 shadow-sm"
+        />
+      )}
       {subBlocks && subBlocks.length > 0 ? (
         <div className="mt-6 space-y-4">
-          {subBlocks.map((title) => (
-            <SubBlock key={title} title={title} />
+          {subBlocks.map((subBlock) => (
+            <SubBlock key={subBlock.title} title={subBlock.title} content={subBlock.content} />
           ))}
         </div>
-      ) : (
-        <div className="mt-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-6 text-sm italic text-slate-400">
-          {t.emptySectionPlaceholder}
-        </div>
-      )}
+      ) : null}
     </section>
   );
 }

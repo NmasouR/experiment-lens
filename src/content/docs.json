@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Docs — ExperimentLens",
-    "description": "ExperimentLens documentation: quick start, building the app, example experiments with MLflow and Kubeflow, and an explainability guide."
+    "description": "ExperimentLens documentation: quick start, building the app, example experiments, and an explainability guide."
   },
   "header": {
     "back": "Back to home",
@@ -10,13 +10,12 @@
   "intro": {
     "eyebrow": "Documentation",
     "title": "ExperimentLens docs",
-    "body": "Learn how to run ExperimentLens, build the app from source, ship your first experiment with MLflow and Kubeflow, and understand what the explainability views are telling you."
+    "body": "Learn how to run ExperimentLens, build the app from source, ship your first experiment, and understand what the explainability views are telling you."
   },
   "groups": ["Getting started", "Experiments", "Concepts"],
   "sections": [
     { "id": "overview", "title": "Overview", "icon": "Rocket", "group": "Getting started" },
     { "id": "build-app", "title": "Build the app", "icon": "Hammer", "group": "Getting started" },
-    { "id": "quick-start", "title": "Quick start", "icon": "Terminal", "group": "Getting started" },
     { "id": "exp-mlflow-basic", "title": "MLflow: metrics & params", "icon": "FlaskConical", "group": "Experiments" },
     { "id": "exp-mlflow-explain", "title": "MLflow + explainability", "icon": "Sparkles", "group": "Experiments" },
     { "id": "exp-kubeflow", "title": "MLflow + Kubeflow", "icon": "Workflow", "group": "Experiments" },
@@ -28,56 +27,68 @@
       "id": "overview",
       "eyebrow": "Getting started",
       "title": "Overview",
-      "description": "Run ExperimentLens locally against an existing MLflow deployment in a few minutes."
+      "description": "ExperimentLens is a lightweight yet powerful visual dashboard for the interactive exploration, monitoring, and explainability of complex AI pipelines.<br/>Developed within the context of the <a href=\"https://extremexp.eu/\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-slate-900 hover:underline\">ExtremeXP project</a>, ExperimentLens empowers researchers, data scientists, and engineers to make sense of experimental results across multiple runs and interconnected tasks.<br/>The tool is centered on human-in-the-loop experimentation, enabling users to monitor pipeline lifecycles, inspect results, and gain insights into pipeline behavior and configuration sensitivity.<br/><br/><strong>ExperimentLens</strong> is composed of three main components that together enable interactive visual exploration and explainability of AI pipelines:<br/><br/><div class=\"overflow-x-auto\"><table class=\"w-full border-collapse text-left text-sm\"><thead><tr><th class=\"border border-slate-200 bg-slate-50 px-4 py-2 font-semibold text-slate-900\">Component</th><th class=\"border border-slate-200 bg-slate-50 px-4 py-2 font-semibold text-slate-900\">Description</th></tr></thead><tbody><tr><td class=\"border border-slate-200 px-4 py-2\"><a href=\"https://github.com/extremexp-HORIZON/vis-frontend\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-slate-900 hover:underline\">Visualization UI</a></td><td class=\"border border-slate-200 px-4 py-2\">Interactive dashboard for exploring experiments, monitoring executions, and visualizing explainability results.</td></tr><tr><td class=\"border border-slate-200 px-4 py-2\"><a href=\"https://github.com/extremexp-HORIZON/vis-api\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-slate-900 hover:underline\">Visualization Middleware (Backend)</a></td><td class=\"border border-slate-200 px-4 py-2\">REST-based middleware connecting the UI to experiment tracking tools and orchestration frameworks.</td></tr><tr><td class=\"border border-slate-200 px-4 py-2\"><a href=\"https://github.com/extremexp-HORIZON/extremexp-explainability-module\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-slate-900 hover:underline\">Explainability Module</a></td><td class=\"border border-slate-200 px-4 py-2\">Provides local and global explainability methods, such as counterfactuals, PDP, and ALE, and integrates results into the UI through the middleware.</td></tr></tbody></table></div><br/>Each component repository includes its own setup and development instructions.",
+      "image": "screenOverview"
     },
     {
       "id": "build-app",
       "eyebrow": "Getting started",
       "title": "Build the app",
       "description": "Build the frontend, API and explainability module from source — useful for self-hosting and contributing.",
-      "subBlocks": ["Prerequisites", "Clone the repositories", "Configure environment", "Run the stack"]
-    },
-    {
-      "id": "quick-start",
-      "eyebrow": "Getting started",
-      "title": "Quick start",
-      "description": "A concise step-by-step guide to get ExperimentLens running in minutes.",
-      "subBlocks": ["Start the services", "Connect to MLflow", "Open the UI"]
+      "subBlocks": [
+        {
+          "title": "Prerequisites",
+          "content": "Before starting, ensure you have:<br/><br/><ul class=\"list-disc space-y-1 pl-5\"><li><strong>Docker</strong> (Docker Desktop recommended for Windows/Mac)</li><li><strong>Git</strong></li><li><strong>PowerShell</strong> (Windows) or <strong>Bash</strong> (Linux/macOS)</li></ul>"
+        }, {
+          "title": "Clone Required Repositories",
+          "content": "ExperimentLens depends on three external repositories:<br/><br/><ul class=\"list-disc space-y-1 pl-5\"><li><code>vis-frontend</code></li><li><code>vis-api</code></li><li><code>extremexp-explainability-module</code></li></ul><br/>To fetch them automatically, clone the repository <a href=\"https://github.com/extremexp-HORIZON/experiment-lens\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-sky-700 hover:underline\">experiment-lens</a> and run the bootstrap script inside the cloned directory.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Windows (PowerShell)</h4><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>./bootstrap.ps1</code></pre><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Linux / macOS (Bash)</h4><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>bash bootstrap.sh</code></pre><br/>This creates a <code>repos/</code> directory containing all required components."
+        }, {
+          "title": "Configure Environment Files",
+          "content": "Two environment files must be created before running the system.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Main Orchestrator <code>.env</code></h4><br/><ol class=\"list-decimal space-y-2 pl-5\"><li>Copy the template:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>cp .env.example .env</code></pre><span class=\"text-xs italic text-slate-500\">Windows users may need to copy manually.</span></li><li>Fill in the required values.</li></ol><br/>This <code>.env</code> file configures the entire Docker environment.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Backend API <code>.env</code></h4><br/>Located at:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>repos/vis-api/.env</code></pre><br/><ol class=\"list-decimal space-y-2 pl-5\"><li>Copy the template:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>cp repos/vis-api/.env.example repos/vis-api/.env</code></pre></li><li>Fill in the required values.</li></ol><br/>The API <strong>will not start</strong> unless this file exists."
+        }, {
+          "title": "Build and Run ExperimentLens",
+          "content": "Once all repositories and environment files are ready:<br/><br/><ol class=\"list-decimal space-y-4 pl-5\"><li><span class=\"font-semibold uppercase tracking-wide text-slate-500\">Build the Docker images</span><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>docker compose build</code></pre></li><li><span class=\"font-semibold uppercase tracking-wide text-slate-500\">Start all services</span><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>docker compose up</code></pre></li></ol>"
+        },
+        {
+          "title": "Access the Dashboard",
+          "content": "Open your browser at:<br/><br/><a href=\"http://localhost:5173\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-sky-700 hover:underline\">http://localhost:5173</a>"
+        }
+      ]
     },
     {
       "id": "exp-mlflow-basic",
       "eyebrow": "Experiments",
       "title": "A simple MLflow experiment",
       "description": "Log parameters and metrics to MLflow and open the run in ExperimentLens.",
-      "subBlocks": ["Set up MLflow tracking", "Log params & metrics", "View the run in ExperimentLens"]
+      "subBlocks": [{ "title": "Set up MLflow tracking", "content": "Configure MLflow to track your experiments." }, { "title": "Log params & metrics", "content": "Log the parameters and metrics for each experiment run." }, { "title": "View the run in ExperimentLens", "content": "Open the ExperimentLens user interface to visualize the experiment results." }]
     },
     {
       "id": "exp-mlflow-explain",
       "eyebrow": "Experiments",
       "title": "MLflow experiment with explainability",
       "description": "Extend the previous example to also log explainability artifacts the module can consume.",
-      "subBlocks": ["Install the explainability module", "Generate & log explanations", "Inspect explanations in the UI"]
+      "subBlocks": [{ "title": "Install the explainability module", "content": "Install the explainability module in your development environment." }, { "title": "Generate & log explanations", "content": "Generate explanations for your model predictions and log them to MLflow." }, { "title": "Inspect explanations in the UI", "content": "Use the ExperimentLens user interface to inspect and analyze the logged explanations." }]
     },
     {
       "id": "exp-kubeflow",
       "eyebrow": "Experiments",
       "title": "MLflow + Kubeflow",
       "description": "Wrap the same experiment as a Kubeflow pipeline, track runs in MLflow, and view the orchestrated workflow in ExperimentLens.",
-      "subBlocks": ["Author the Kubeflow pipeline", "Connect MLflow tracking", "Submit & monitor runs", "Compare runs across configurations"]
+      "subBlocks": [{ "title": "Author the Kubeflow pipeline", "content": "Create a Kubeflow pipeline to orchestrate your machine learning workflow." }, { "title": "Connect MLflow tracking", "content": "Configure MLflow to track the experiments within the Kubeflow pipeline." }, { "title": "Submit & monitor runs", "content": "Submit the Kubeflow pipeline for execution and monitor the progress." }, { "title": "Compare runs across configurations", "content": "Analyze and compare the results of different experiment configurations." }]
     },
     {
       "id": "exp-kubeflow-actions",
       "eyebrow": "Experiments",
       "title": "Kubeflow-only actions",
       "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by Kubeflow.",
-      "subBlocks": ["Start and stop a run", "Create a new run from the UI", "Spawn a workflow from counterfactuals"]
+      "subBlocks": [{ "title": "Start and stop a run", "content": "Start and stop a run from the ExperimentLens UI." }, { "title": "Create a new run from the UI", "content": "Create a new run from the ExperimentLens UI." }, { "title": "Spawn a workflow from counterfactuals", "content": "Spawn a workflow from counterfactuals in the ExperimentLens UI." }]
     },
     {
       "id": "explainability",
       "eyebrow": "Concepts",
       "title": "How explainability works",
       "description": "What ExperimentLens computes, how to read the charts, and what the answers actually mean.",
-      "subBlocks": ["What we explain (and what we don't)", "Feature importance", "SHAP values", "Reading the model card", "Fairness metrics"]
+      "subBlocks": [{ "title": "What we explain (and what we don't)", "content": "Explanation of what aspects of the model are explained and what are not." }, { "title": "Feature importance", "content": "Understanding the relative importance of different features in the model." }, { "title": "SHAP values", "content": "Interpreting SHAP (SHapley Additive exPlanations) values for model explanations." }, { "title": "Reading the model card", "content": "How to read and interpret the model card in ExperimentLens." }, { "title": "Fairness metrics", "content": "Evaluating the fairness of the model using various metrics." }]
     }
   ],
   "subBlockPlaceholder": "Content to be added.",

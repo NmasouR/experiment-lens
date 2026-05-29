@@ -32,6 +32,7 @@ export function DocsPage() {
               eyebrow={s.eyebrow}
               title={s.title}
               description={s.description}
+              image={"image" in s ? s.image : undefined}
               subBlocks={"subBlocks" in s ? s.subBlocks : undefined}
             />
           ))}
