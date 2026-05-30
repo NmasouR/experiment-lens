@@ -1,13 +1,12 @@
 import t from "@/content/docs.json";
 import screenOverview from "@/assets/screen-overview.png";
+import { HtmlContent } from "@/components/ui/content/HtmlContent";
 
 function SubBlock({ title, content }: { title: string; content?: string }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-5">
       <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
-      <p className="mt-1 text-xs italic text-slate-400"
-        dangerouslySetInnerHTML={{ __html: content || t.subBlockPlaceholder }}
-      />
+      <HtmlContent html={content || t.subBlockPlaceholder} />
     </div>
   );
 }

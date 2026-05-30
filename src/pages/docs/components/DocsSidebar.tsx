@@ -1,11 +1,14 @@
+import { useState } from "react";
 import {
-  Rocket,
-  Hammer,
-  Terminal,
-  FlaskConical,
-  Sparkles,
-  Workflow,
   Brain,
+  ChevronDown,
+  ChevronRight,
+  FlaskConical,
+  Hammer,
+  Rocket,
+  Sparkles,
+  Terminal,
+  Workflow,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -23,34 +26,108 @@ const ICONS: Record<string, LucideIcon> = {
   Zap,
 };
 
+type DocSectionLink = {
+  id: string;
+  title: string;
+  icon: string;
+  group: string;
+};
+
+type SidebarSectionItem = {
+  id: string;
+};
+
+type SidebarGroupItem = {
+  title: string;
+  children: SidebarItem[];
+};
+
+type SidebarItem = SidebarSectionItem | SidebarGroupItem;
+
+type SidebarGroup = {
+  title: string;
+  children: SidebarItem[];
+};
+
+const sectionsById = new Map(
+  (t.sections as DocSectionLink[]).map((section) => [section.id, section]),
+);
+
+function isSectionItem(item: SidebarItem): item is SidebarSectionItem {
+  return "id" in item;
+}
+
+function SectionLink({ id, nested = false }: { id: string; nested?: boolean }) {
+  const section = sectionsById.get(id);
+
+  if (!section) return null;
+
+  const Icon = ICONS[section.icon] ?? Terminal;
+
+  return (
+    <a
+      href={`#${section.id}`}
+      className="flex items-center gap-2 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+    >
+      <Icon className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+      <span className={nested ? "text-xs" : undefined}>{section.title}</span>
+    </a>
+  );
+}
+
+function CollapsibleSidebarGroup({
+  group,
+  defaultOpen = true,
+  nested = false,
+}: {
+  group: SidebarGroup | SidebarGroupItem;
+  defaultOpen?: boolean;
+  nested?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  const ChevronIcon = open ? ChevronDown : ChevronRight;
+
+  return (
+    <div className={nested ? "space-y-1" : undefined}>
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        className={
+          nested
+            ? "mb-1 flex w-full items-center gap-1 rounded-md px-2 py-1 text-left text-xs font-semibold uppercase tracking-widest text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+            : "mb-2 flex w-full items-center gap-1 rounded-md px-0 py-1 text-left text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-slate-700"
+        }
+        aria-expanded={open}
+      >
+        <ChevronIcon className="h-3.5 w-3.5 shrink-0" />
+        {group.title}
+      </button>
+
+      {open && (
+        <ul className={nested ? "space-y-1 border-l border-slate-200 pl-3" : "space-y-1"}>
+          {group.children.map((item) =>
+            isSectionItem(item) ? (
+              <li key={item.id}>
+                <SectionLink id={item.id} nested={nested} />
+              </li>
+            ) : (
+              <li key={item.title}>
+                <CollapsibleSidebarGroup group={item} nested />
+              </li>
+            ),
+          )}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 export function DocsSidebar() {
   return (
     <aside className="col-span-12 md:col-span-3">
       <nav className="sticky top-20 space-y-6 text-sm">
-        {t.groups.map((group) => (
-          <div key={group}>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-slate-400">
-              {group}
-            </p>
-            <ul className="space-y-1">
-              {t.sections
-                .filter((s) => s.group === group)
-                .map((s) => {
-                  const Icon = ICONS[s.icon];
-                  return (
-                    <li key={s.id}>
-                      <a
-                        href={`#${s.id}`}
-                        className="flex items-center gap-2 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                      >
-                        <Icon className="h-3.5 w-3.5 text-slate-400" />
-                        {s.title}
-                      </a>
-                    </li>
-                  );
-                })}
-            </ul>
-          </div>
+        {(t.groups as SidebarGroup[]).map((group) => (
+          <CollapsibleSidebarGroup key={group.title} group={group} />
         ))}
       </nav>
     </aside>

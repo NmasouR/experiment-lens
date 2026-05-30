@@ -12,15 +12,97 @@
     "title": "ExperimentLens docs",
     "body": "Learn how to run ExperimentLens, build the app from source, ship your first experiment, and understand what the explainability views are telling you."
   },
-  "groups": ["Getting started", "Experiments", "Concepts"],
+  "groups": [
+    {
+      "title": "Getting started",
+      "children": [
+        {
+          "id": "overview"
+        },
+        {
+          "id": "build-app"
+        }
+      ]
+    },
+    {
+      "title": "Experiments",
+      "children": [
+        {
+          "title": "MLflow",
+          "children": [
+            {
+              "id": "exp-mlflow-basic"
+            },
+            {
+              "id": "exp-mlflow-explain"
+            }
+          ]
+        },
+        {
+          "title": "Kubeflow",
+          "children": [
+            {
+              "id": "exp-kubeflow"
+            },
+            {
+              "id": "exp-kubeflow-actions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Concepts",
+      "children": [
+        {
+          "id": "explainability"
+        }
+      ]
+    }
+  ],
   "sections": [
-    { "id": "overview", "title": "Overview", "icon": "Rocket", "group": "Getting started" },
-    { "id": "build-app", "title": "Build the app", "icon": "Hammer", "group": "Getting started" },
-    { "id": "exp-mlflow-basic", "title": "MLflow: metrics & params", "icon": "FlaskConical", "group": "Experiments" },
-    { "id": "exp-mlflow-explain", "title": "MLflow + explainability", "icon": "Sparkles", "group": "Experiments" },
-    { "id": "exp-kubeflow", "title": "MLflow + Kubeflow", "icon": "Workflow", "group": "Experiments" },
-    { "id": "exp-kubeflow-actions", "title": "Kubeflow-only actions", "icon": "Zap", "group": "Experiments" },
-    { "id": "explainability", "title": "How explainability works", "icon": "Brain", "group": "Concepts" }
+    {
+      "id": "overview",
+      "title": "Overview",
+      "icon": "Rocket",
+      "group": "Getting started"
+    },
+    {
+      "id": "build-app",
+      "title": "Build the app",
+      "icon": "Hammer",
+      "group": "Getting started"
+    },
+    {
+      "id": "exp-mlflow-basic",
+      "title": "MLflow: metrics & params",
+      "icon": "FlaskConical",
+      "group": "Experiments"
+    },
+    {
+      "id": "exp-mlflow-explain",
+      "title": "MLflow + explainability",
+      "icon": "Sparkles",
+      "group": "Experiments"
+    },
+    {
+      "id": "exp-kubeflow",
+      "title": "MLflow + Kubeflow",
+      "icon": "Workflow",
+      "group": "Experiments"
+    },
+    {
+      "id": "exp-kubeflow-actions",
+      "title": "Kubeflow-only actions",
+      "icon": "Zap",
+      "group": "Experiments"
+    },
+    {
+      "id": "explainability",
+      "title": "How explainability works",
+      "icon": "Brain",
+      "group": "Concepts"
+    }
   ],
   "docSections": [
     {
@@ -39,15 +121,18 @@
         {
           "title": "Prerequisites",
           "content": "Before starting, ensure you have:<br/><br/><ul class=\"list-disc space-y-1 pl-5\"><li><strong>Docker</strong> (Docker Desktop recommended for Windows/Mac)</li><li><strong>Git</strong></li><li><strong>PowerShell</strong> (Windows) or <strong>Bash</strong> (Linux/macOS)</li></ul>"
-        }, {
+        },
+        {
           "title": "Clone Required Repositories",
-          "content": "ExperimentLens depends on three external repositories:<br/><br/><ul class=\"list-disc space-y-1 pl-5\"><li><code>vis-frontend</code></li><li><code>vis-api</code></li><li><code>extremexp-explainability-module</code></li></ul><br/>To fetch them automatically, clone the repository <a href=\"https://github.com/extremexp-HORIZON/experiment-lens\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-sky-700 hover:underline\">experiment-lens</a> and run the bootstrap script inside the cloned directory.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Windows (PowerShell)</h4><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>./bootstrap.ps1</code></pre><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Linux / macOS (Bash)</h4><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>bash bootstrap.sh</code></pre><br/>This creates a <code>repos/</code> directory containing all required components."
-        }, {
+          "content": "ExperimentLens depends on three external repositories:<br/><br/><ul class=\"list-disc space-y-1 pl-5\"><li><code>vis-frontend</code></li><li><code>vis-api</code></li><li><code>extremexp-explainability-module</code></li></ul><br/>To fetch them automatically, clone the repository <a href=\"https://github.com/extremexp-HORIZON/experiment-lens\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-sky-700 hover:underline\">experiment-lens</a> and run the bootstrap script inside the cloned directory.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Windows (PowerShell)</h4><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-powershell\">./bootstrap.ps1</code></pre><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Linux / macOS (Bash)</h4><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">bash bootstrap.sh</code></pre><br/>This creates a <code>repos/</code> directory containing all required components."
+        },
+        {
           "title": "Configure Environment Files",
-          "content": "Two environment files must be created before running the system.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Main Orchestrator <code>.env</code></h4><br/><ol class=\"list-decimal space-y-2 pl-5\"><li>Copy the template:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>cp .env.example .env</code></pre><span class=\"text-xs italic text-slate-500\">Windows users may need to copy manually.</span></li><li>Fill in the required values.</li></ol><br/>This <code>.env</code> file configures the entire Docker environment.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Backend API <code>.env</code></h4><br/>Located at:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>repos/vis-api/.env</code></pre><br/><ol class=\"list-decimal space-y-2 pl-5\"><li>Copy the template:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>cp repos/vis-api/.env.example repos/vis-api/.env</code></pre></li><li>Fill in the required values.</li></ol><br/>The API <strong>will not start</strong> unless this file exists."
-        }, {
+          "content": "Two environment files must be created before running the system.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Main Orchestrator <code>.env</code></h4><br/><ol class=\"list-decimal space-y-2 pl-5\"><li>Copy the template:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">cp .env.example .env</code></pre><span class=\"text-xs italic text-slate-500\">Windows users may need to copy manually.</span></li><li>Fill in the required values.</li></ol><br/>This <code>.env</code> file configures the entire Docker environment.<br/><br/><h4 class=\"text-xs font-semibold uppercase tracking-wide text-slate-500\">Backend API <code>.env</code></h4><br/>Located at:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">repos/vis-api/.env</code></pre><br/><ol class=\"list-decimal space-y-2 pl-5\"><li>Copy the template:<pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">cp repos/vis-api/.env.example repos/vis-api/.env</code></pre></li><li>Fill in the required values.</li></ol><br/>The API <strong>will not start</strong> unless this file exists."
+        },
+        {
           "title": "Build and Run ExperimentLens",
-          "content": "Once all repositories and environment files are ready:<br/><br/><ol class=\"list-decimal space-y-4 pl-5\"><li><span class=\"font-semibold uppercase tracking-wide text-slate-500\">Build the Docker images</span><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>docker compose build</code></pre></li><li><span class=\"font-semibold uppercase tracking-wide text-slate-500\">Start all services</span><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code>docker compose up</code></pre></li></ol>"
+          "content": "Once all repositories and environment files are ready:<br/><br/><ol class=\"list-decimal space-y-4 pl-5\"><li><span class=\"font-semibold uppercase tracking-wide text-slate-500\">Build the Docker images</span><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">docker compose build</code></pre></li><li><span class=\"font-semibold uppercase tracking-wide text-slate-500\">Start all services</span><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">docker compose up</code></pre></li></ol>"
         },
         {
           "title": "Access the Dashboard",
@@ -59,36 +144,101 @@
       "id": "exp-mlflow-basic",
       "eyebrow": "Experiments",
       "title": "A simple MLflow experiment",
-      "description": "Log parameters and metrics to MLflow and open the run in ExperimentLens.",
-      "subBlocks": [{ "title": "Set up MLflow tracking", "content": "Configure MLflow to track your experiments." }, { "title": "Log params & metrics", "content": "Log the parameters and metrics for each experiment run." }, { "title": "View the run in ExperimentLens", "content": "Open the ExperimentLens user interface to visualize the experiment results." }]
+      "description": "Log parameters, metrics and artifacts to MLflow and open the run in ExperimentLens.",
+      "subBlocks": [
+        {
+          "title": "Set up MLflow tracking",
+          "content": "ExperimentLens can integrate with an <strong>MLflow Tracking Server</strong> to load and visualize MLflow-tracked experiments.<br/><br/>For the MLflow examples in this documentation, use <strong>MLflow version 2.22.1</strong> and run the tracking server locally at:<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-text\">http://localhost:5000</code></pre><br/>Install the recommended MLflow version with:<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">pip install mlflow==2.22.1</code></pre><br/>Then start the MLflow server on port <code>5000</code>:<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">mlflow server --host 127.0.0.1 --port 5000</code></pre><br/>Once the server is running, experiments logged to MLflow can be retrieved through the ExperimentLens integration and displayed in the application."
+        },
+        {
+          "title": "Log params & metrics",
+          "content": "Use a small Iris classification problem to verify that MLflow logging works end to end. The example below trains a <strong>Random Forest classifier</strong> across multiple hyperparameter configurations, creating <strong>10 MLflow runs</strong>. Each run logs parameters, evaluation metrics, the trained model, and a text classification report artifact.<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-python\">import mlflow\nimport mlflow.sklearn\nfrom pathlib import Path\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score, classification_report, f1_score\nfrom sklearn.model_selection import train_test_split\n\nmlflow.set_tracking_uri(\"http://localhost:5000\")\nmlflow.set_experiment(\"iris-classification-demo\")\n\nX, y = load_iris(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.2,\n    random_state=42,\n    stratify=y,\n)\n\nruns = [\n    {\"n_estimators\": 25, \"max_depth\": 2, \"random_state\": 1},\n    {\"n_estimators\": 50, \"max_depth\": 2, \"random_state\": 2},\n    {\"n_estimators\": 75, \"max_depth\": 2, \"random_state\": 3},\n    {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 4},\n    {\"n_estimators\": 125, \"max_depth\": 3, \"random_state\": 5},\n    {\"n_estimators\": 150, \"max_depth\": 3, \"random_state\": 6},\n    {\"n_estimators\": 175, \"max_depth\": 4, \"random_state\": 7},\n    {\"n_estimators\": 200, \"max_depth\": 4, \"random_state\": 8},\n    {\"n_estimators\": 225, \"max_depth\": 5, \"random_state\": 9},\n    {\"n_estimators\": 250, \"max_depth\": 5, \"random_state\": 10},\n]\n\nfor index, params in enumerate(runs, start=1):\n    with mlflow.start_run(run_name=f\"random-forest-iris-{index}\"):\n        model = RandomForestClassifier(**params)\n        model.fit(X_train, y_train)\n\n        predictions = model.predict(X_test)\n\n        accuracy = accuracy_score(y_test, predictions)\n        macro_f1 = f1_score(y_test, predictions, average=\"macro\")\n        report = classification_report(y_test, predictions)\n\n        mlflow.log_params(params)\n        mlflow.log_metric(\"accuracy\", accuracy)\n        mlflow.log_metric(\"macro_f1\", macro_f1)\n\n        report_path = Path(f\"classification_report_run_{index}.txt\")\n        report_path.write_text(report)\n        mlflow.log_artifact(str(report_path), artifact_path=\"reports\")\n\n        mlflow.sklearn.log_model(model, artifact_path=\"model\")\n\n        print(\n            f\"run={index}, accuracy={accuracy:.3f}, macro_f1={macro_f1:.3f}\"\n        )</code></pre><br/>After the script finishes, the MLflow experiment should contain 10 runs named <code>random-forest-iris-1</code> through <code>random-forest-iris-10</code>. Open ExperimentLens, select the <code>iris-classification-demo</code> experiment, and use it to inspect the logged parameters, compare metrics across runs, and browse the generated artifacts."
+        }
+      ]
     },
     {
       "id": "exp-mlflow-explain",
       "eyebrow": "Experiments",
       "title": "MLflow experiment with explainability",
       "description": "Extend the previous example to also log explainability artifacts the module can consume.",
-      "subBlocks": [{ "title": "Install the explainability module", "content": "Install the explainability module in your development environment." }, { "title": "Generate & log explanations", "content": "Generate explanations for your model predictions and log them to MLflow." }, { "title": "Inspect explanations in the UI", "content": "Use the ExperimentLens user interface to inspect and analyze the logged explanations." }]
+      "subBlocks": [
+        {
+          "title": "Generate & log explainability artifacts",
+          "content": "Extend the Iris classification experiment by logging the files required by the ExperimentLens explainability views. For each MLflow run, the script logs the files to MLflow under the artifact path <code>explainability</code>.<br/><br/>The required files are:<br/><br/><ul class=\"list-disc space-y-1 pl-5\"><li><code>X_train.csv</code></li><li><code>X_test.csv</code></li><li><code>Y_train.csv</code></li><li><code>Y_pred.csv</code></li><li><code>model.pkl</code></li><li><code>roc_data.json</code> for ROC curve visualization</li></ul><br/>The <code>roc_data.json</code> file should contain a single ROC object with <code>fpr</code>, <code>tpr</code>, <code>thresholds</code>, and <code>roc_auc</code>.<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-python\">import json\nimport pickle\nfrom pathlib import Path\n\nimport mlflow\nimport numpy as np\nimport pandas as pd\nfrom sklearn.datasets import load_iris\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score, auc, classification_report, f1_score, roc_curve\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import label_binarize\n\nmlflow.set_tracking_uri(\"http://localhost:5000\")\nmlflow.set_experiment(\"iris-classification-demo-explainability\")\n\niris = load_iris()\nX = pd.DataFrame(iris.data, columns=iris.feature_names)\ny = pd.Series(iris.target, name=\"target\")\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.2,\n    random_state=42,\n    stratify=y,\n)\n\nruns = [\n    {\"n_estimators\": 25, \"max_depth\": 2, \"random_state\": 1},\n    {\"n_estimators\": 50, \"max_depth\": 2, \"random_state\": 2},\n    {\"n_estimators\": 75, \"max_depth\": 2, \"random_state\": 3},\n    {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 4},\n    {\"n_estimators\": 125, \"max_depth\": 3, \"random_state\": 5},\n    {\"n_estimators\": 150, \"max_depth\": 3, \"random_state\": 6},\n    {\"n_estimators\": 175, \"max_depth\": 4, \"random_state\": 7},\n    {\"n_estimators\": 200, \"max_depth\": 4, \"random_state\": 8},\n    {\"n_estimators\": 225, \"max_depth\": 5, \"random_state\": 9},\n    {\"n_estimators\": 250, \"max_depth\": 5, \"random_state\": 10},\n]\n\nartifact_dir = Path(\"output/explainabiity\")\nartifact_dir.mkdir(parents=True, exist_ok=True)\n\nfor index, params in enumerate(runs, start=1):\n    with mlflow.start_run(run_name=f\"random-forest-iris-explainability-{index}\"):\n        model = RandomForestClassifier(**params)\n        model.fit(X_train, y_train)\n\n        predictions = model.predict(X_test)\n        probabilities = model.predict_proba(X_test)\n\n        accuracy = accuracy_score(y_test, predictions)\n        macro_f1 = f1_score(y_test, predictions, average=\"macro\")\n        report = classification_report(y_test, predictions, target_names=iris.target_names)\n\n        mlflow.log_params(params)\n        mlflow.log_metric(\"accuracy\", accuracy)\n        mlflow.log_metric(\"macro_f1\", macro_f1)\n\n        X_train.to_csv(artifact_dir / \"X_train.csv\", index=False)\n        X_test.to_csv(artifact_dir / \"X_test.csv\", index=False)\n        y_train.to_frame().to_csv(artifact_dir / \"Y_train.csv\", index=False)\n        y_test.to_frame().to_csv(artifact_dir / \"Y_pred.csv\", index=False)\n\n        with open(artifact_dir / \"model.pkl\", \"wb\") as file:\n            pickle.dump(model, file)\n\n        y_test_binary = label_binarize(y_test, classes=np.unique(y))\n\n        fpr, tpr, thresholds = roc_curve(\n            y_test_binary.ravel(),\n            probabilities.ravel(),\n        )\n\n        roc_data = {\n            \"fpr\": fpr.tolist(),\n            \"tpr\": tpr.tolist(),\n            \"thresholds\": thresholds.tolist(),\n            \"roc_auc\": auc(fpr, tpr),\n        }\n\n        with open(artifact_dir / \"roc_data.json\", \"w\") as file:\n            json.dump(roc_data, file, indent=2)\n\n        report_path = artifact_dir / \"classification_report.txt\"\n        report_path.write_text(report)\n\n        mlflow.log_artifacts(str(artifact_dir), artifact_path=\"explainability\")\n\n        print(\n            f\"run={index}, accuracy={accuracy:.3f}, macro_f1={macro_f1:.3f}\"\n        )</code></pre><br/>After running the script, open ExperimentLens, select the <code>iris-classification-demo-explainability</code> experiment, and inspect one of the logged runs to view the metrics, parameters, explainability artifacts, and ROC curve."
+        }
+      ]
     },
     {
       "id": "exp-kubeflow",
       "eyebrow": "Experiments",
       "title": "MLflow + Kubeflow",
       "description": "Wrap the same experiment as a Kubeflow pipeline, track runs in MLflow, and view the orchestrated workflow in ExperimentLens.",
-      "subBlocks": [{ "title": "Author the Kubeflow pipeline", "content": "Create a Kubeflow pipeline to orchestrate your machine learning workflow." }, { "title": "Connect MLflow tracking", "content": "Configure MLflow to track the experiments within the Kubeflow pipeline." }, { "title": "Submit & monitor runs", "content": "Submit the Kubeflow pipeline for execution and monitor the progress." }, { "title": "Compare runs across configurations", "content": "Analyze and compare the results of different experiment configurations." }]
+      "subBlocks": [
+        {
+          "title": "Author the Kubeflow pipeline",
+          "content": "Create a Kubeflow pipeline to orchestrate your machine learning workflow."
+        },
+        {
+          "title": "Connect MLflow tracking",
+          "content": "Configure MLflow to track the experiments within the Kubeflow pipeline."
+        },
+        {
+          "title": "Submit & monitor runs",
+          "content": "Submit the Kubeflow pipeline for execution and monitor the progress."
+        },
+        {
+          "title": "Compare runs across configurations",
+          "content": "Analyze and compare the results of different experiment configurations."
+        }
+      ]
     },
     {
       "id": "exp-kubeflow-actions",
       "eyebrow": "Experiments",
       "title": "Kubeflow-only actions",
       "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by Kubeflow.",
-      "subBlocks": [{ "title": "Start and stop a run", "content": "Start and stop a run from the ExperimentLens UI." }, { "title": "Create a new run from the UI", "content": "Create a new run from the ExperimentLens UI." }, { "title": "Spawn a workflow from counterfactuals", "content": "Spawn a workflow from counterfactuals in the ExperimentLens UI." }]
+      "subBlocks": [
+        {
+          "title": "Start and stop a run",
+          "content": "Start and stop a run from the ExperimentLens UI."
+        },
+        {
+          "title": "Create a new run from the UI",
+          "content": "Create a new run from the ExperimentLens UI."
+        },
+        {
+          "title": "Spawn a workflow from counterfactuals",
+          "content": "Spawn a workflow from counterfactuals in the ExperimentLens UI."
+        }
+      ]
     },
     {
       "id": "explainability",
       "eyebrow": "Concepts",
       "title": "How explainability works",
       "description": "What ExperimentLens computes, how to read the charts, and what the answers actually mean.",
-      "subBlocks": [{ "title": "What we explain (and what we don't)", "content": "Explanation of what aspects of the model are explained and what are not." }, { "title": "Feature importance", "content": "Understanding the relative importance of different features in the model." }, { "title": "SHAP values", "content": "Interpreting SHAP (SHapley Additive exPlanations) values for model explanations." }, { "title": "Reading the model card", "content": "How to read and interpret the model card in ExperimentLens." }, { "title": "Fairness metrics", "content": "Evaluating the fairness of the model using various metrics." }]
+      "subBlocks": [
+        {
+          "title": "What we explain (and what we don't)",
+          "content": "Explanation of what aspects of the model are explained and what are not."
+        },
+        {
+          "title": "Feature importance",
+          "content": "Understanding the relative importance of different features in the model."
+        },
+        {
+          "title": "SHAP values",
+          "content": "Interpreting SHAP (SHapley Additive exPlanations) values for model explanations."
+        },
+        {
+          "title": "Reading the model card",
+          "content": "How to read and interpret the model card in ExperimentLens."
+        },
+        {
+          "title": "Fairness metrics",
+          "content": "Evaluating the fairness of the model using various metrics."
+        }
+      ]
     }
   ],
   "subBlockPlaceholder": "Content to be added.",
