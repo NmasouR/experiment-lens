@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Docs — ExperimentLens",
+    "title": "Docs \u2014 ExperimentLens",
     "description": "ExperimentLens documentation: quick start, building the app, example experiments, and an explainability guide."
   },
   "header": {
     "back": "Back to home",
-    "brand": "ExperimentLens · Docs"
+    "brand": "ExperimentLens \u00b7 Docs"
   },
   "intro": {
     "eyebrow": "Documentation",
@@ -43,9 +43,6 @@
           "children": [
             {
               "id": "exp-kubeflow"
-            },
-            {
-              "id": "exp-kubeflow-actions"
             }
           ]
         }
@@ -54,6 +51,9 @@
     {
       "title": "Concepts",
       "children": [
+        {
+          "id": "exp-execution-actions"
+        },
         {
           "id": "explainability"
         }
@@ -92,10 +92,10 @@
       "group": "Experiments"
     },
     {
-      "id": "exp-kubeflow-actions",
-      "title": "Kubeflow-only actions",
+      "id": "exp-execution-actions",
+      "title": "Execution engine-only actions",
       "icon": "Zap",
-      "group": "Experiments"
+      "group": "Concepts"
     },
     {
       "id": "explainability",
@@ -116,7 +116,7 @@
       "id": "build-app",
       "eyebrow": "Getting started",
       "title": "Build the app",
-      "description": "Build the frontend, API and explainability module from source — useful for self-hosting and contributing.",
+      "description": "Build the frontend, API and explainability module from source \u2014 useful for self-hosting and contributing.",
       "subBlocks": [
         {
           "title": "Prerequisites",
@@ -172,44 +172,52 @@
       "id": "exp-kubeflow",
       "eyebrow": "Experiments",
       "title": "MLflow + Kubeflow",
-      "description": "Wrap the same experiment as a Kubeflow pipeline, track runs in MLflow, and view the orchestrated workflow in ExperimentLens.",
+      "description": "Run the Iris explainability experiment as a Kubeflow pipeline, log the required explainability artifacts to MLflow, and connect every MLflow run back to its Kubeflow pipeline run.",
       "subBlocks": [
         {
-          "title": "Author the Kubeflow pipeline",
-          "content": "Create a Kubeflow pipeline to orchestrate your machine learning workflow."
+          "title": "Kubeflow version of the explainability experiment",
+          "content": "Kubeflow should be accessible on: <br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-text\">http://localhost:8888</code></pre><br/> This example is the Kubeflow version of the <strong>MLflow + explainability</strong> Iris experiment. It keeps the same core behavior: train a Random Forest model, log metrics, and write the explainability files expected by ExperimentLens under the MLflow artifact path <code>explainability</code>.<br/><br/>The difference is that the experiment now runs as a <strong>Kubeflow Pipeline</strong>. Because of that, each MLflow run must also include Kubeflow metadata tags so ExperimentLens can connect the MLflow run to the Kubeflow execution."
         },
         {
-          "title": "Connect MLflow tracking",
-          "content": "Configure MLflow to track the experiments within the Kubeflow pipeline."
+          "title": "Required MLflow tags",
+          "content": "Inside the Kubeflow training component, log these tags immediately after starting the MLflow run:<br/><br/><ul class=\"list-disc space-y-1 pl-5\"><li><code>kfp.pipeline_name</code>: the Kubeflow pipeline name.</li><li><code>kfp.run_id</code>: the Kubeflow pipeline run ID.</li><li><code>pipeline_name</code> and <code>run_id</code>: compatibility aliases for integrations that expect generic pipeline metadata.</li><li><code>source=kubeflow</code>: marks the run as orchestrated by Kubeflow.</li><li><code>status</code>: starts as <code>running</code>, then becomes <code>finished</code>, <code>failed</code>, or <code>killed</code>.</li></ul><br/>The Kubeflow run ID is passed with <code>dsl.PIPELINE_JOB_ID_PLACEHOLDER</code>, which Kubeflow resolves at runtime."
+        },
+        {
+          "title": "Failure handling",
+          "content": "Register the MLflow failure handler as soon as the MLflow run starts. This is important because a Kubeflow component can fail through a Python exception, manual cancellation, pod termination, or interruption signal. The handler updates the MLflow run status and logs termination metadata. If an exception happens, it also writes <code>errors/error_traceback.txt</code> as an MLflow artifact."
+        },
+        {
+          "title": "Full Iris explainability Kubeflow pipeline",
+          "content": "Use this file as <code>iris_kubeflow_explainability_pipeline.py</code>. Update <code>MLFLOW_TRACKING_URI</code>, <code>MLFLOW_TOKEN</code>, and <code>MLFLOW_EXPERIMENT_NAME</code> before compiling it.<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-python\">from kfp import compiler, dsl\nfrom kfp.dsl import Dataset, Input, Metrics, Output\n\n\n@dsl.component(\n    base_image=\"python:3.9\",\n    packages_to_install=[\n        \"pandas==2.2.2\",\n        \"numpy==1.26.4\",\n        \"scikit-learn==1.4.2\",\n        \"mlflow==2.9.2\",\n    ],\n)\ndef generate_iris_data(output_dataset: Output[Dataset]):\n    import os\n\n    import pandas as pd\n    from sklearn.datasets import load_iris\n\n    iris = load_iris()\n\n    df = pd.DataFrame(iris.data, columns=iris.feature_names)\n    df[\"target\"] = iris.target\n\n    os.makedirs(output_dataset.path, exist_ok=True)\n    df.to_csv(os.path.join(output_dataset.path, \"iris.csv\"), index=False)\n\n\n@dsl.component(\n    base_image=\"python:3.9\",\n    packages_to_install=[\n        \"pandas==2.2.2\",\n        \"numpy==1.26.4\",\n        \"scikit-learn==1.4.2\",\n        \"mlflow==2.9.2\",\n    ],\n)\ndef train_explainability_and_log(\n    input_dataset: Input[Dataset],\n    run_metrics: Output[Metrics],\n    n_estimators: int,\n    max_depth: int,\n    pipeline_name: str,\n    kfp_run_id: str,\n):\n    import json\n    import os\n    import pickle\n    import signal\n    import tempfile\n    import traceback\n    from pathlib import Path\n\n    import mlflow\n    import mlflow.sklearn\n    import numpy as np\n    import pandas as pd\n    from mlflow.models import infer_signature\n    from mlflow.tracking import MlflowClient\n    from sklearn.ensemble import RandomForestClassifier\n    from sklearn.metrics import accuracy_score, auc, classification_report, f1_score, roc_curve\n    from sklearn.model_selection import train_test_split\n    from sklearn.preprocessing import label_binarize\n\n    def register_mlflow_failure_handlers(run_id: str):\n        finalized = {\"done\": False}\n\n        def finalize(status: str, reason: str, extra=None):\n            if finalized[\"done\"]:\n                return\n            finalized[\"done\"] = True\n            try:\n                mlflow.set_tag(\"status\", status.lower())\n                mlflow.set_tag(\"termination.reason\", reason)\n                mlflow.set_tag(\"termination.pid\", str(os.getpid()))\n                if extra:\n                    for key, value in extra.items():\n                        mlflow.set_tag(f\"termination.{key}\", str(value))\n                mlflow.end_run(status=status)\n            except Exception:\n                pass\n\n        def signal_handler(signum, frame):\n            try:\n                signal_name = signal.Signals(signum).name\n            except Exception:\n                signal_name = str(signum)\n\n            finalize(\n                status=\"KILLED\",\n                reason=\"signal\",\n                extra={\"signal\": signal_name, \"run_id\": run_id},\n            )\n            raise SystemExit(128 + int(signum))\n\n        for signum in (signal.SIGTERM, signal.SIGINT):\n            try:\n                signal.signal(signum, signal_handler)\n            except Exception:\n                pass\n\n        def mark_failed(exc: BaseException):\n            traceback_text = traceback.format_exc()\n            finalize(\n                status=\"FAILED\",\n                reason=\"exception\",\n                extra={\"exception_type\": type(exc).__name__, \"run_id\": run_id},\n            )\n            try:\n                with tempfile.TemporaryDirectory() as tmpdir:\n                    path = os.path.join(tmpdir, \"error_traceback.txt\")\n                    with open(path, \"w\", encoding=\"utf-8\") as file:\n                        file.write(traceback_text)\n                    mlflow.log_artifact(path, artifact_path=\"errors\")\n            except Exception:\n                pass\n\n        return mark_failed\n\n    MLFLOW_TRACKING_URI = \"http://&lt;mlflow-host&gt;:5000\"\n    MLFLOW_TOKEN = \"&lt;token-if-needed&gt;\"\n    MLFLOW_EXPERIMENT_NAME = \"iris-classification-demo-kubeflow-explainability\"\n\n    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)\n    os.environ[\"MLFLOW_TRACKING_TOKEN\"] = MLFLOW_TOKEN\n\n    mlflow.set_experiment(MLFLOW_EXPERIMENT_NAME)\n    exp = mlflow.get_experiment_by_name(MLFLOW_EXPERIMENT_NAME)\n    if exp is None:\n        raise RuntimeError(f\"Could not resolve MLflow experiment: {MLFLOW_EXPERIMENT_NAME}\")\n\n    client = MlflowClient()\n    client.set_experiment_tag(exp.experiment_id, \"kfp.pipeline_name\", pipeline_name)\n\n    df = pd.read_csv(os.path.join(input_dataset.path, \"iris.csv\"))\n    X = df.drop(columns=[\"target\"])\n    y = df[\"target\"]\n\n    X_train, X_test, y_train, y_test = train_test_split(\n        X,\n        y,\n        test_size=0.2,\n        random_state=42,\n        stratify=y,\n    )\n\n    params = {\n        \"n_estimators\": n_estimators,\n        \"max_depth\": max_depth,\n        \"random_state\": 42,\n    }\n\n    with mlflow.start_run(run_name=f\"kfp-iris-explainability-{kfp_run_id}\") as run:\n        mark_failed = register_mlflow_failure_handlers(run.info.run_id)\n\n        try:\n            mlflow.set_tags(\n                {\n                    \"kfp.pipeline_name\": pipeline_name,\n                    \"kfp.run_id\": kfp_run_id,\n                    \"pipeline_name\": pipeline_name,\n                    \"run_id\": kfp_run_id,\n                    \"source\": \"kubeflow\",\n                    \"status\": \"running\",\n                }\n            )\n\n            mlflow.log_params(params)\n\n            model = RandomForestClassifier(**params)\n            model.fit(X_train, y_train)\n\n            predictions = model.predict(X_test)\n            probabilities = model.predict_proba(X_test)\n\n            accuracy = accuracy_score(y_test, predictions)\n            macro_f1 = f1_score(y_test, predictions, average=\"macro\")\n            report = classification_report(y_test, predictions)\n\n            mlflow.log_metric(\"accuracy\", accuracy)\n            mlflow.log_metric(\"macro_f1\", macro_f1)\n\n            with tempfile.TemporaryDirectory() as tmpdir:\n                artifact_dir = Path(tmpdir) / \"explainability\"\n                artifact_dir.mkdir(parents=True, exist_ok=True)\n\n                X_train.to_csv(artifact_dir / \"X_train.csv\", index=False)\n                X_test.to_csv(artifact_dir / \"X_test.csv\", index=False)\n                y_train.to_frame(name=\"target\").to_csv(\n                    artifact_dir / \"Y_train.csv\",\n                    index=False,\n                )\n                pd.Series(predictions, name=\"target\").to_frame().to_csv(\n                    artifact_dir / \"Y_pred.csv\",\n                    index=False,\n                )\n\n                with open(artifact_dir / \"model.pkl\", \"wb\") as file:\n                    pickle.dump(model, file)\n\n                y_test_binary = label_binarize(y_test, classes=np.unique(y))\n                fpr, tpr, thresholds = roc_curve(\n                    y_test_binary.ravel(),\n                    probabilities.ravel(),\n                )\n\n                roc_data = {\n                    \"fpr\": fpr.tolist(),\n                    \"tpr\": tpr.tolist(),\n                    \"thresholds\": thresholds.tolist(),\n                    \"roc_auc\": auc(fpr, tpr),\n                }\n\n                with open(artifact_dir / \"roc_data.json\", \"w\", encoding=\"utf-8\") as file:\n                    json.dump(roc_data, file, indent=2)\n\n                report_path = artifact_dir / \"classification_report.txt\"\n                report_path.write_text(report, encoding=\"utf-8\")\n\n                mlflow.log_artifacts(str(artifact_dir), artifact_path=\"explainability\")\n\n            signature = infer_signature(X_test, predictions)\n            mlflow.sklearn.log_model(\n                sk_model=model,\n                artifact_path=\"model\",\n                signature=signature,\n                input_example=X_test.head(3),\n            )\n\n            summary = {\n                \"mlflow_run_id\": run.info.run_id,\n                \"kfp_run_id\": kfp_run_id,\n                \"pipeline_name\": pipeline_name,\n                \"mlflow_tracking_uri\": MLFLOW_TRACKING_URI,\n                \"accuracy\": accuracy,\n                \"macro_f1\": macro_f1,\n            }\n\n            with open(run_metrics.path, \"w\", encoding=\"utf-8\") as file:\n                json.dump(summary, file)\n\n            mlflow.set_tag(\"status\", \"finished\")\n            print(json.dumps(summary, indent=2))\n        except SystemExit:\n            raise\n        except Exception as exc:\n            mark_failed(exc)\n            raise\n\n\n@dsl.pipeline(name=\"iris-kubeflow-explainability-pipeline\")\ndef iris_kubeflow_explainability_pipeline(\n    n_estimators: int = 100,\n    max_depth: int = 3,\n    pipeline_name: str = \"iris-kubeflow-explainability-pipeline\",\n):\n    data_op = generate_iris_data().set_caching_options(enable_caching=True)\n\n    train_op = train_explainability_and_log(\n        input_dataset=data_op.outputs[\"output_dataset\"],\n        n_estimators=n_estimators,\n        max_depth=max_depth,\n        pipeline_name=pipeline_name,\n        kfp_run_id=dsl.PIPELINE_JOB_ID_PLACEHOLDER,\n    ).after(data_op)\n    train_op.set_caching_options(enable_caching=False)\n\n\nif __name__ == \"__main__\":\n    compiler.Compiler().compile(\n        pipeline_func=iris_kubeflow_explainability_pipeline,\n        package_path=\"iris_kubeflow_explainability.yaml\",\n    )\n    print(\"Compiled iris_kubeflow_explainability.yaml\")</code></pre>"
         },
         {
           "title": "Submit & monitor runs",
-          "content": "Submit the Kubeflow pipeline for execution and monitor the progress."
+          "content": "Compile the pipeline and upload the generated YAML to Kubeflow Pipelines, or submit it with your configured Kubeflow client.<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">python iris_kubeflow_explainability_pipeline.py\n\n# Then upload/run iris_kubeflow_explainability.yaml in Kubeflow Pipelines.</code></pre><br/>After the run starts, the MLflow run name will include the Kubeflow run ID, and the same ID will be available in the <code>kfp.run_id</code> and <code>run_id</code> tags."
         },
         {
-          "title": "Compare runs across configurations",
-          "content": "Analyze and compare the results of different experiment configurations."
+          "title": "Open the run in ExperimentLens",
+          "content": "After the Kubeflow run finishes, open ExperimentLens and select <code>iris-classification-demo-kubeflow-explainability</code>. Each run should include MLflow parameters, metrics, the model artifact, Kubeflow metadata tags, and the <code>explainability</code> artifact folder containing <code>X_train.csv</code>, <code>X_test.csv</code>, <code>Y_train.csv</code>, <code>Y_pred.csv</code>, <code>model.pkl</code>, <code>roc_data.json</code>, and <code>classification_report.txt</code>."
         }
       ]
     },
     {
-      "id": "exp-kubeflow-actions",
-      "eyebrow": "Experiments",
-      "title": "Kubeflow-only actions",
-      "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by Kubeflow.",
+      "id": "exp-execution-actions",
+      "eyebrow": "Concepts",
+      "title": "Execution eingine-only actions",
+      "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by an execution engine.",
       "subBlocks": [
         {
-          "title": "Start and stop a run",
-          "content": "Start and stop a run from the ExperimentLens UI."
+          "title": "Create a new run from the UI or kill a running one",
+          "content": "When an experiment is backed by an execution engine, ExperimentLens enables run-level actions directly from the workflow table. Each row represents a workflow run and includes an <strong>Actions</strong> column on the right side of the table. From there, you can create or schedule a new run based on the selected configuration, or stop a workflow that is currently running.<br/><br/>The table also shows the current execution <strong>Status</strong> for each run, such as <code>completed</code> or <code>scheduled</code>, so you can quickly decide which actions are available for that workflow.",
+          "image": "workflowTable",
+          "imageAlt": "Workflow table showing execution status and run actions"
         },
         {
-          "title": "Create a new run from the UI",
-          "content": "Create a new run from the ExperimentLens UI."
-        },
-        {
-          "title": "Spawn a workflow from counterfactuals",
-          "content": "Spawn a workflow from counterfactuals in the ExperimentLens UI."
-        }
+          "title": "Spawn a workflow from counterfactual explanations",
+          "content": "When an experiment is backed by an execution engine, ExperimentLens can turn selected counterfactual explanations into new workflow executions. In the <strong>Instance View</strong>, select an instance from the classification table, then inspect the generated counterfactuals below it.<br/><br/>The counterfactual table shows suggested changes for either <strong>features</strong> or <strong>hyperparameters</strong>. For each counterfactual row, the <strong>Actions</strong> column provides an execution action that can be used to spawn a new workflow run using the suggested changes. This allows you to move directly from explanation to experimentation: inspect why a result could change, then launch a new run to test that configuration.",
+          "image": "counterfactualsScreen",
+          "imageAlt": "Instance view showing counterfactual explanations and workflow spawn actions"
+        }     
       ]
     },
     {
