@@ -143,7 +143,7 @@
     {
       "id": "exp-execution-actions",
       "eyebrow": "Concepts",
-      "title": "Execution eingine-only actions",
+      "title": "Execution engine-only actions",
       "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by an execution engine.",
       "subBlocks": [
         {
