@@ -3,6 +3,13 @@ import screenOverview from "@/assets/screen-overview.png";
 import { HtmlContent } from "@/components/ui/content/HtmlContent";
 import workflowTable from "@/assets/workflow-table.png";
 import counterfactualsScreen from "@/assets/counterfactuals-screen.png";
+import modelAnalysis from "@/assets/model-analysis.png";
+import instanceView from "@/assets/instance-view.png";
+import featureExplainability from "@/assets/feature-explainability.png";
+import paramExplainability from "@/assets/param-explainability.png";
+import globalExplainability from "@/assets/global-explainability.png";
+import globalCounterfactuals from "@/assets/global-counterfactuals.png";
+
 
 // import your new image
 
@@ -40,6 +47,12 @@ const IMAGES: Record<string, string> = {
   screenOverview,
   workflowTable,
   counterfactualsScreen,
+  modelAnalysis,
+  instanceView,
+  featureExplainability,
+  paramExplainability,
+  globalExplainability,
+  globalCounterfactuals,
 };
 
 export function DocSection({

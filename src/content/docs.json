@@ -25,6 +25,17 @@
       ]
     },
     {
+      "title": "Concepts",
+      "children": [
+        {
+          "id": "exp-execution-actions"
+        },
+        {
+          "id": "explainability"
+        }
+      ]
+    },
+    {
       "title": "Experiments",
       "children": [
         {
@@ -47,17 +58,6 @@
           ]
         }
       ]
-    },
-    {
-      "title": "Concepts",
-      "children": [
-        {
-          "id": "exp-execution-actions"
-        },
-        {
-          "id": "explainability"
-        }
-      ]
     }
   ],
   "sections": [
@@ -72,6 +72,18 @@
       "title": "Build the app",
       "icon": "Hammer",
       "group": "Getting started"
+    },
+    {
+      "id": "exp-execution-actions",
+      "title": "Execution engine-only actions",
+      "icon": "Zap",
+      "group": "Concepts"
+    },
+    {
+      "id": "explainability",
+      "title": "How explainability works",
+      "icon": "Brain",
+      "group": "Concepts"
     },
     {
       "id": "exp-mlflow-basic",
@@ -90,18 +102,6 @@
       "title": "MLflow + Kubeflow",
       "icon": "Workflow",
       "group": "Experiments"
-    },
-    {
-      "id": "exp-execution-actions",
-      "title": "Execution engine-only actions",
-      "icon": "Zap",
-      "group": "Concepts"
-    },
-    {
-      "id": "explainability",
-      "title": "How explainability works",
-      "icon": "Brain",
-      "group": "Concepts"
     }
   ],
   "docSections": [
@@ -137,6 +137,70 @@
         {
           "title": "Access the Dashboard",
           "content": "Open your browser at:<br/><br/><a href=\"http://localhost:5173\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-sky-700 hover:underline\">http://localhost:5173</a>"
+        }
+      ]
+    },
+    {
+      "id": "exp-execution-actions",
+      "eyebrow": "Concepts",
+      "title": "Execution eingine-only actions",
+      "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by an execution engine.",
+      "subBlocks": [
+        {
+          "title": "Create a new run from the UI or kill a running one",
+          "content": "When an experiment is backed by an execution engine, ExperimentLens enables run-level actions directly from the workflow table. Each row represents a workflow run and includes an <strong>Actions</strong> column on the right side of the table. From there, you can create or schedule a new run based on the selected configuration, or stop a workflow that is currently running.<br/><br/>The table also shows the current execution <strong>Status</strong> for each run, such as <code>completed</code> or <code>scheduled</code>, so you can quickly decide which actions are available for that workflow.",
+          "image": "workflowTable",
+          "imageAlt": "Workflow table showing execution status and run actions"
+        },
+        {
+          "title": "Spawn a workflow from counterfactual explanations",
+          "content": "When an experiment is backed by an execution engine, ExperimentLens can turn selected counterfactual explanations into new workflow executions. In the <strong>Instance View</strong>, select an instance from the classification table, then inspect the generated counterfactuals below it.<br/><br/>The counterfactual table shows suggested changes for either <strong>features</strong> or <strong>hyperparameters</strong>. For each counterfactual row, the <strong>Actions</strong> column provides an execution action that can be used to spawn a new workflow run using the suggested changes. This allows you to move directly from explanation to experimentation: inspect why a result could change, then launch a new run to test that configuration.",
+          "image": "counterfactualsScreen",
+          "imageAlt": "Instance view showing counterfactual explanations and workflow spawn actions"
+        }     
+      ]
+    },
+    {
+      "id": "explainability",
+      "eyebrow": "Concepts",
+      "title": "How explainability works",
+      "description": "ExperimentLens provides model-level, instance-level, feature-level, hyperparameter-level, and counterfactual explainability views. These views help users understand why a workflow produced a result, which parameters or features influenced performance, and how alternative configurations could change the outcome.",
+      "subBlocks": [
+        {
+          "title": "Model analysis overview",
+          "content": "The model analysis view summarizes the selected trained model and its evaluation results. It shows dataset split information, the number of samples, features, and classes, together with core evaluation artifacts such as the confusion matrix, ROC curve, and classification report.<br/><br/>This view is useful as the starting point for explainability because it gives context about the model's predictive performance before inspecting deeper explanations.",
+          "image": "modelAnalysis",
+          "imageAlt": "Model analysis view showing model overview, data splits, confusion matrix, ROC curve, and classification report"
+        },
+        {
+          "title": "Instance view",
+          "content": "The instance view allows users to inspect individual predictions. It visualizes the test instances and highlights correctly classified and misclassified examples, helping users identify where the model behaves well and where it makes mistakes.<br/><br/>After selecting an instance, ExperimentLens can show instance-specific explanations for that selected row. Users can inspect the local SHAP plot to understand which features pushed the prediction toward or away from the predicted class. This makes it easier to explain a single model decision instead of only looking at global model behavior.<br/><br/>The same view can also display counterfactual suggestions for the selected instance, showing what feature or hyperparameter changes could alter the prediction or improve the result.",
+          "image": "instanceView",
+          "imageAlt": "Instance view showing correct and misclassified predictions with local explanations"
+        },
+        {
+          "title": "Feature explainability",
+          "content": "Feature explainability explains how input features influence the model's predictions. ExperimentLens provides multiple views, including <strong>Feature Importance</strong>, <strong>SHAP Values</strong>, <strong>Partial Dependence Plots</strong>, <strong>2D Partial Dependence Plots</strong> and <strong>Accumulated Local Effects</strong> plots.<br/><br/>Feature Importance and SHAP highlight which features contribute most strongly to the model output. PDP and ALE plots show how changing a feature affects the predicted value, helping users understand trends, thresholds, and non-linear behavior.",
+          "image": "featureExplainability",
+          "imageAlt": "Feature explainability view showing feature importance, SHAP values, PDP, and ALE plots"
+        },
+        {
+          "title": "Hyperparameter explainability",
+          "content": "Hyperparameter explainability focuses on how workflow configuration choices affect model performance and fairness metrics. The view includes PDP, ALE, and 2D-PDP charts for hyperparameters, or other experiment parameters.<br/><br/>This helps users understand which hyperparameters have the strongest impact, whether performance changes smoothly or abruptly, and which regions of the configuration space are more promising.",
+          "image": "paramExplainability",
+          "imageAlt": "Hyperparameter explainability view showing PDP, ALE, and 2D-PDP plots"
+        },
+        {
+          "title": "Global experiment explainability",
+          "content": "Global explainability summarizes behavior across the full experiment rather than a single model run. The variability point importance plot shows which experiment parameters contribute most to differences between workflow outcomes.<br/><br/>This view is useful when comparing many workflows because it helps identify which configuration choices explain the largest variation in metrics, performance, or fairness results.",
+          "image": "globalExplainability",
+          "imageAlt": "Global experiment explainability view showing variability point importance and global PDP/ALE plots"
+        },
+        {
+          "title": "Global counterfactuals",
+          "content": "Global counterfactuals suggest high-level actions that could improve the experiment outcome. Users can configure the number of counterfactual actions, the local counterfactual method, and the action choice strategy. ExperimentLens then summarizes the total cost and effectiveness of the suggested actions.<br/><br/>The table shows recommended feature or hyperparameter changes, while the action selection charts visualize how the selected actions affect the experiment space before and after applying the counterfactual strategy.",
+          "image": "globalCounterfactuals",
+          "imageAlt": "Global counterfactuals view showing action recommendations, cost, effectiveness, and action selection plots"
         }
       ]
     },
@@ -197,54 +261,6 @@
         {
           "title": "Open the run in ExperimentLens",
           "content": "After the Kubeflow run finishes, open ExperimentLens and select <code>iris-classification-demo-kubeflow-explainability</code>. Each run should include MLflow parameters, metrics, the model artifact, Kubeflow metadata tags, and the <code>explainability</code> artifact folder containing <code>X_train.csv</code>, <code>X_test.csv</code>, <code>Y_train.csv</code>, <code>Y_pred.csv</code>, <code>model.pkl</code>, <code>roc_data.json</code>, and <code>classification_report.txt</code>."
-        }
-      ]
-    },
-    {
-      "id": "exp-execution-actions",
-      "eyebrow": "Concepts",
-      "title": "Execution eingine-only actions",
-      "description": "Actions you can perform inside ExperimentLens only when the experiment is backed by an execution engine.",
-      "subBlocks": [
-        {
-          "title": "Create a new run from the UI or kill a running one",
-          "content": "When an experiment is backed by an execution engine, ExperimentLens enables run-level actions directly from the workflow table. Each row represents a workflow run and includes an <strong>Actions</strong> column on the right side of the table. From there, you can create or schedule a new run based on the selected configuration, or stop a workflow that is currently running.<br/><br/>The table also shows the current execution <strong>Status</strong> for each run, such as <code>completed</code> or <code>scheduled</code>, so you can quickly decide which actions are available for that workflow.",
-          "image": "workflowTable",
-          "imageAlt": "Workflow table showing execution status and run actions"
-        },
-        {
-          "title": "Spawn a workflow from counterfactual explanations",
-          "content": "When an experiment is backed by an execution engine, ExperimentLens can turn selected counterfactual explanations into new workflow executions. In the <strong>Instance View</strong>, select an instance from the classification table, then inspect the generated counterfactuals below it.<br/><br/>The counterfactual table shows suggested changes for either <strong>features</strong> or <strong>hyperparameters</strong>. For each counterfactual row, the <strong>Actions</strong> column provides an execution action that can be used to spawn a new workflow run using the suggested changes. This allows you to move directly from explanation to experimentation: inspect why a result could change, then launch a new run to test that configuration.",
-          "image": "counterfactualsScreen",
-          "imageAlt": "Instance view showing counterfactual explanations and workflow spawn actions"
-        }     
-      ]
-    },
-    {
-      "id": "explainability",
-      "eyebrow": "Concepts",
-      "title": "How explainability works",
-      "description": "What ExperimentLens computes, how to read the charts, and what the answers actually mean.",
-      "subBlocks": [
-        {
-          "title": "What we explain (and what we don't)",
-          "content": "Explanation of what aspects of the model are explained and what are not."
-        },
-        {
-          "title": "Feature importance",
-          "content": "Understanding the relative importance of different features in the model."
-        },
-        {
-          "title": "SHAP values",
-          "content": "Interpreting SHAP (SHapley Additive exPlanations) values for model explanations."
-        },
-        {
-          "title": "Reading the model card",
-          "content": "How to read and interpret the model card in ExperimentLens."
-        },
-        {
-          "title": "Fairness metrics",
-          "content": "Evaluating the fairness of the model using various metrics."
         }
       ]
     }
