@@ -57,19 +57,39 @@ function isSectionItem(item: SidebarItem): item is SidebarSectionItem {
   return "id" in item;
 }
 
-function SectionLink({ id, nested = false }: { id: string; nested?: boolean }) {
+function SectionLink({
+  id,
+  nested = false,
+  activeSectionId,
+}: {
+  id: string;
+  nested?: boolean;
+  activeSectionId: string | null;
+}) {
   const section = sectionsById.get(id);
 
   if (!section) return null;
 
   const Icon = ICONS[section.icon] ?? Terminal;
+  const isActive = activeSectionId === section.id;
 
   return (
     <a
       href={`#${section.id}`}
-      className="flex items-center gap-2 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+      aria-current={isActive ? "true" : undefined}
+      className={
+        isActive
+          ? "flex items-center gap-2 rounded-md bg-sky-50 px-2 py-1.5 font-medium text-sky-700 ring-1 ring-sky-100"
+          : "flex items-center gap-2 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+      }
     >
-      <Icon className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+      <Icon
+        className={
+          isActive
+            ? "h-3.5 w-3.5 shrink-0 text-sky-600"
+            : "h-3.5 w-3.5 shrink-0 text-slate-400"
+        }
+      />
       <span className={nested ? "text-xs" : undefined}>{section.title}</span>
     </a>
   );
@@ -79,10 +99,12 @@ function CollapsibleSidebarGroup({
   group,
   defaultOpen = true,
   nested = false,
+  activeSectionId,
 }: {
   group: SidebarGroup | SidebarGroupItem;
   defaultOpen?: boolean;
   nested?: boolean;
+  activeSectionId: string | null;
 }) {
   const [open, setOpen] = useState(defaultOpen);
   const ChevronIcon = open ? ChevronDown : ChevronRight;
@@ -104,15 +126,29 @@ function CollapsibleSidebarGroup({
       </button>
 
       {open && (
-        <ul className={nested ? "space-y-1 border-l border-slate-200 pl-3" : "space-y-1"}>
+        <ul
+          className={
+            nested
+              ? "space-y-1 border-l border-slate-200 pl-3"
+              : "space-y-1"
+          }
+        >
           {group.children.map((item) =>
             isSectionItem(item) ? (
               <li key={item.id}>
-                <SectionLink id={item.id} nested={nested} />
+                <SectionLink
+                  id={item.id}
+                  nested={nested}
+                  activeSectionId={activeSectionId}
+                />
               </li>
             ) : (
               <li key={item.title}>
-                <CollapsibleSidebarGroup group={item} nested />
+                <CollapsibleSidebarGroup
+                  group={item}
+                  nested
+                  activeSectionId={activeSectionId}
+                />
               </li>
             ),
           )}
@@ -122,12 +158,20 @@ function CollapsibleSidebarGroup({
   );
 }
 
-export function DocsSidebar() {
+export function DocsSidebar({
+  activeSectionId,
+}: {
+  activeSectionId: string | null;
+}) {
   return (
     <aside className="col-span-12 md:col-span-3">
       <nav className="sticky top-20 space-y-6 text-sm">
         {(t.groups as SidebarGroup[]).map((group) => (
-          <CollapsibleSidebarGroup key={group.title} group={group} />
+          <CollapsibleSidebarGroup
+            key={group.title}
+            group={group}
+            activeSectionId={activeSectionId}
+          />
         ))}
       </nav>
     </aside>
