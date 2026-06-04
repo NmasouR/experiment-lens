@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 
 import { DocsHeader } from "./components/DocsHeader";
 import { DocsSidebar } from "./components/DocsSidebar";
@@ -6,11 +6,44 @@ import { DocSection } from "./components/DocSection";
 import { Footer } from "@/components/ui/layout/Footer";
 import t from "@/content/docs.json";
 
+const DocsContent = memo(function DocsContent() {
+  return (
+    <main className="col-span-12 space-y-20 md:col-span-9">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-widest text-sky-600">
+          {t.intro.eyebrow}
+        </p>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight text-slate-900">
+          {t.intro.title}
+        </h1>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
+          {t.intro.body}
+        </p>
+      </div>
+
+      {t.docSections.map((s) => (
+        <DocSection
+          key={s.id}
+          id={s.id}
+          eyebrow={s.eyebrow}
+          title={s.title}
+          description={s.description}
+          image={"image" in s ? s.image : undefined}
+          subBlocks={"subBlocks" in s ? s.subBlocks : undefined}
+        />
+      ))}
+    </main>
+  );
+});
+
 export function DocsPage() {
+  const initialSectionId = t.docSections[0]?.id ?? null;
+
   const [activeSectionId, setActiveSectionId] = useState<string | null>(
-    t.docSections[0]?.id ?? null,
+    initialSectionId,
   );
 
+  const activeSectionIdRef = useRef<string | null>(initialSectionId);
   const tickingRef = useRef(false);
 
   useEffect(() => {
@@ -46,17 +79,20 @@ export function DocsPage() {
       const headerOffset = 200;
       const scrollPosition = window.scrollY + headerOffset;
 
-      let currentSectionId = sections[0].id;
+      let nextActiveSectionId = sections[0].id;
 
       for (const section of sections) {
         if (section.top <= scrollPosition) {
-          currentSectionId = section.id;
+          nextActiveSectionId = section.id;
         } else {
           break;
         }
       }
 
-      setActiveSectionId(currentSectionId);
+      if (activeSectionIdRef.current === nextActiveSectionId) return;
+
+      activeSectionIdRef.current = nextActiveSectionId;
+      setActiveSectionId(nextActiveSectionId);
     }
 
     function requestUpdateActiveSection() {
@@ -75,7 +111,6 @@ export function DocsPage() {
     window.addEventListener("scroll", requestUpdateActiveSection, {
       passive: true,
     });
-
     window.addEventListener("resize", requestUpdateActiveSection);
     window.addEventListener("load", requestUpdateActiveSection);
 
@@ -93,31 +128,7 @@ export function DocsPage() {
       <div className="mx-auto grid max-w-7xl grid-cols-12 gap-10 px-6 py-10">
         <DocsSidebar activeSectionId={activeSectionId} />
 
-        <main className="col-span-12 space-y-20 md:col-span-9">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-sky-600">
-              {t.intro.eyebrow}
-            </p>
-            <h1 className="mt-2 text-4xl font-semibold tracking-tight text-slate-900">
-              {t.intro.title}
-            </h1>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
-              {t.intro.body}
-            </p>
-          </div>
-
-          {t.docSections.map((s) => (
-            <DocSection
-              key={s.id}
-              id={s.id}
-              eyebrow={s.eyebrow}
-              title={s.title}
-              description={s.description}
-              image={"image" in s ? s.image : undefined}
-              subBlocks={"subBlocks" in s ? s.subBlocks : undefined}
-            />
-          ))}
-        </main>
+        <DocsContent />
       </div>
       <Footer />
     </div>
