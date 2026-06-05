@@ -81,7 +81,8 @@ export function HtmlContent({ html }: { html: string }) {
         mt-3 max-w-none text-sm leading-relaxed text-slate-600
 
         [&_pre]:my-4
-        [&_pre]:overflow-x-auto
+        [&_pre]:max-h-[450px]
+        [&_pre]:overflow-auto
         [&_pre]:rounded-xl
         [&_pre]:bg-slate-950
         [&_pre]:p-4
