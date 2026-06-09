@@ -163,9 +163,39 @@ export function DocsSidebar({
 }: {
   activeSectionId: string | null;
 }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
     <aside className="col-span-12 md:col-span-3">
-      <nav className="sticky top-20 space-y-6 text-sm">
+      <div className="md:hidden">
+        <button
+          type="button"
+          onClick={() => setMobileOpen((current) => !current)}
+          className="flex w-full items-center justify-between rounded-lg border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-900 shadow-sm"
+          aria-expanded={mobileOpen}
+        >
+          <span>Documentation sections</span>
+          {mobileOpen ? (
+            <ChevronDown className="h-4 w-4 text-slate-500" />
+          ) : (
+            <ChevronRight className="h-4 w-4 text-slate-500" />
+          )}
+        </button>
+
+        {mobileOpen && (
+          <nav className="mt-3 max-h-[60vh] overflow-y-auto rounded-lg border border-slate-200 bg-white p-4 text-sm shadow-sm">
+            {(t.groups as SidebarGroup[]).map((group) => (
+              <CollapsibleSidebarGroup
+                key={group.title}
+                group={group}
+                activeSectionId={activeSectionId}
+              />
+            ))}
+          </nav>
+        )}
+      </div>
+
+      <nav className="sticky top-20 hidden space-y-6 text-sm md:block">
         {(t.groups as SidebarGroup[]).map((group) => (
           <CollapsibleSidebarGroup
             key={group.title}

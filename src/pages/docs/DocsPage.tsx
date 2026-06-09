@@ -8,15 +8,17 @@ import t from "@/content/docs.json";
 
 const DocsContent = memo(function DocsContent() {
   return (
-    <main className="col-span-12 space-y-20 md:col-span-9">
+    <main className="col-span-12 space-y-12 md:col-span-9 md:space-y-20">
       <div>
         <p className="text-xs font-semibold uppercase tracking-widest text-sky-600">
           {t.intro.eyebrow}
         </p>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight text-slate-900">
+
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           {t.intro.title}
         </h1>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
+
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
           {t.intro.body}
         </p>
       </div>
@@ -125,7 +127,7 @@ export function DocsPage() {
     <div className="min-h-screen bg-white text-slate-900">
       <DocsHeader />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-12 gap-10 px-6 py-10">
+      <div className="mx-auto grid max-w-7xl grid-cols-12 gap-6 px-4 py-6 sm:px-6 sm:py-8 md:gap-10 md:py-10">
         <DocsSidebar activeSectionId={activeSectionId} />
 
         <DocsContent />
