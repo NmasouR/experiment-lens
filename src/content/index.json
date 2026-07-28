@@ -1,7 +1,67 @@
 {
   "meta": {
-    "title": "ExperimentLens — Visual analytics & explainability for ML experiments",
-    "description": "An extensible visual analytics dashboard for ML experiments. Plug in your tracker and your execution engine, then compare runs, inspect data, and explain models — all in one UI."
+    "title": "ExperimentLens — Observability & explainability for agents, LLMs and ML experiments",
+    "description": "A visual analytics dashboard for agentic and ML systems. Trace agents and LLM apps with Langfuse, score them with judges and checks, compare sessions — then drill into the same runs, metrics and explainability you already track."
+  },
+  "homeTabs": {
+    "eyebrow": "Explore ExperimentLens",
+    "agents": "Agents & LLMs",
+    "ml": "ML Experiments"
+  },
+  "agenticHero": {
+    "badge": "New · Agent & LLM observability",
+    "titlePre": "Trace, evaluate and ",
+    "titleHighlight": "explain ",
+    "titlePost": "your agents, LLM apps and ML experiments.",
+    "subtitle": "ExperimentLens brings visual analytics to agentic systems.It captures full traces, LLM-as-judge verdicts and deterministic checks for every run — so you can see exactly how your agents retrieve, reason and answer.<br/>Each experiment run links to one or many traces, side by side with the parameters and metrics you already track. It's still the same dashboard for classic ML experiment tracking, comparison and explainability.",
+    "primaryCta": "Open live demo",
+    "secondaryCta": "Explore agent features",
+    "imageAlt": "ExperimentLens agentic overview dashboard with parallel coordinates plot",
+    "imageCaption": "ExperimentLens dashboard: analyzing configuration effects on experiment performance."
+  },
+  "agenticValueProps": {
+    "eyebrow": "Agentic observability",
+    "title": "See how your agents actually behave.",
+    "subtitle": "From the first span to the final verdict — every run, fully traced and scored.",
+    "items": [
+      {
+        "icon": "Waypoints",
+        "title": "End-to-end tracing",
+        "body": "Records every observation — retrievers, LLM calls and judges — with latency, tokens and cost captured per step of the trace."
+      },
+      {
+        "icon": "Scale",
+        "title": "Judges & verdicts",
+        "body": "LLM-as-judge scores sit next to deterministic checks like citation validity and exact match — as one pass/fail verdict grid."
+      },
+      {
+        "icon": "GitCompare",
+        "title": "Compare sessions",
+        "body": "Line runs up side by side: judge pass-rates, token usage, cumulative latency races and a verdict diff that flags every regression and fix between configurations."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Agent performance",
+        "body": "Per-agent latency, call frequency and quality breakdowns reveal which step is slowing you down or dragging quality."
+      }
+    ]
+  },
+  "agenticShowcase": {
+    "eyebrow": "Inside the agentic view",
+    "title": "Traces, verdicts and dashboards — in one lens.",
+    "subtitle": "The same run you launch as an experiment, explorable down to a single LLM call.",
+    "cards": [
+      { "title": "Per-trace evaluation", "sub": "Judges · checks · metrics · rationale", "image": "agentsTraceEval" },
+      { "title": "Question & answer", "sub": "Full answer with citations", "image": "agentsTraceQa" },
+      { "title": "Prompt inspection", "sub": "Every judge & generation prompt", "image": "agentsTracePrompts" },
+      { "title": "Trace graph", "sub": "Spans & observations, end to end", "image": "agentsTraceGraph" },
+      { "title": "Verdict diff across runs", "sub": "Regressions & fixes at a glance", "image": "agentsVerdictDiff" },
+      { "title": "Session summary", "sub": "Latency, tokens & judge pass %", "image": "agentsSessionSummary" },
+      { "title": "Cumulative latency race", "sub": "Where each run spends its time", "image": "agentsSessionTimeline" },
+      { "title": "Usage dashboards", "sub": "Per-session judges, tokens & cost", "image": "agentsTracesUsage" },
+      { "title": "Agent breakdown", "sub": "Per-agent latency & call frequency", "image": "agentsTracesAgents" }
+    ],
+    "cta": "Explore all agent features"
   },
   "hero": {
     "badge": "ExtremeXP · Horizon Europe project",
@@ -52,8 +112,19 @@
   "integrations": {
     "eyebrow": "Integrations",
     "title": "Works with the stack you already run.",
-    "subtitle": "ExperimentLens consumes runs from your tracker and orchestrates them through your engine.",
+    "subtitle": "ExperimentLens consumes runs from your tracker, traces from your agent stack, and orchestrates them through your engine.",
     "cards": [
+      {
+        "icon": "Waypoints",
+        "tag": "Trace observability",
+        "name": "Langfuse",
+        "body": "Instruments your agents and LLM apps. ExperimentLens reads Langfuse traces directly, so every span, generation, judge and check maps back to the run that produced it.",
+        "points": [
+          "Spans, generations & retrievers per trace",
+          "LLM-as-judge verdicts & deterministic checks",
+          "Latency, tokens & cost per observation"
+        ]
+      },
       {
         "icon": "LineChart",
         "tag": "Tracker",

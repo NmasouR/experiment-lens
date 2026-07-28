@@ -3,12 +3,15 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-import screenOverview from "@/assets/screen-overview.png";
-import screenComparative from "@/assets/screen-comparative.png";
-import screenExplainability from "@/assets/screen-explainability.png";
-import screenExperiments from "@/assets/screen-experiments.png";
-import screenWorkflow from "@/assets/screen-workflow.png";
-import screenArtifact from "@/assets/screen-artifact.png";
+import agentsTraceEval from "@/assets/agents-trace-eval.png";
+import agentsTraceQa from "@/assets/agents-trace-qa.png";
+import agentsTracePrompts from "@/assets/agents-trace-prompts.png";
+import agentsTraceGraph from "@/assets/agents-trace-graph.png";
+import agentsVerdictDiff from "@/assets/agents-verdict-diff.png";
+import agentsSessionSummary from "@/assets/agents-session-summary.png";
+import agentsSessionTimeline from "@/assets/agents-session-timeline.png";
+import agentsTracesUsage from "@/assets/agents-traces-usage.png";
+import agentsTracesAgents from "@/assets/agents-traces-agents.png";
 
 import {
   Carousel,
@@ -19,18 +22,20 @@ import {
 import t from "@/content/index.json";
 import { BrowserFrame } from "../../../components/ui/content/BrowserFrame";
 
-
 const IMAGES: Record<string, string> = {
-  screenOverview,
-  screenComparative,
-  screenExplainability,
-  screenExperiments,
-  screenWorkflow,
-  screenArtifact,
+  agentsTraceEval,
+  agentsTraceQa,
+  agentsTracePrompts,
+  agentsTraceGraph,
+  agentsVerdictDiff,
+  agentsSessionSummary,
+  agentsSessionTimeline,
+  agentsTracesUsage,
+  agentsTracesAgents,
 };
 
-export function FeaturesPreview() {
-  const slides = t.featuresPreview.slides;
+export function AgenticShowcase() {
+  const slides = t.agenticShowcase.cards;
   const autoplay = useRef(
     Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }),
   );
@@ -49,17 +54,17 @@ export function FeaturesPreview() {
   }, [api]);
 
   return (
-    <section id="features" className="border-b border-slate-200 bg-white py-20">
+    <section className="border-b border-slate-200 bg-slate-50/60 py-20">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-sky-600">
-            {t.featuresPreview.eyebrow}
+            {t.agenticShowcase.eyebrow}
           </p>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {t.featuresPreview.title}
+            {t.agenticShowcase.title}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-slate-600">
-            {t.featuresPreview.subtitle}
+            {t.agenticShowcase.subtitle}
           </p>
         </div>
 
@@ -72,9 +77,14 @@ export function FeaturesPreview() {
           }}
         >
           <div className="flex items-center justify-between gap-4 px-1 pb-4 sm:px-2">
-            <h3 className="truncate text-base font-semibold text-slate-900 sm:text-lg">
-              {slides[selected]?.title}
-            </h3>
+            <div className="min-w-0">
+              <h3 className="truncate text-base font-semibold text-slate-900 sm:text-lg">
+                {slides[selected]?.title}
+              </h3>
+              <p className="truncate text-xs text-slate-500">
+                {slides[selected]?.sub}
+              </p>
+            </div>
             <div className="flex items-center gap-1.5">
               {slides.map((s, i) => (
                 <button
@@ -116,10 +126,10 @@ export function FeaturesPreview() {
         <div className="mt-10 text-center">
           <Link
             to="/features"
-            hash="ml"
+            hash="agents"
             className="inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
           >
-            {t.featuresPreview.exploreCta} <ArrowRight className="h-4 w-4" />
+            {t.agenticShowcase.cta} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

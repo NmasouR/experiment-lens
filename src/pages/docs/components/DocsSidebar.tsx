@@ -8,12 +8,14 @@ import {
   Rocket,
   Sparkles,
   Terminal,
+  Waypoints,
   Workflow,
   Zap,
   type LucideIcon,
 } from "lucide-react";
 
 import t from "@/content/docs.json";
+import { DocTabs, type DocTab } from "./DocTabs";
 
 const ICONS: Record<string, LucideIcon> = {
   Rocket,
@@ -24,6 +26,7 @@ const ICONS: Record<string, LucideIcon> = {
   Workflow,
   Brain,
   Zap,
+  Waypoints,
 };
 
 type DocSectionLink = {
@@ -159,14 +162,21 @@ function CollapsibleSidebarGroup({
 }
 
 export function DocsSidebar({
+  activeTab,
+  onTabChange,
   activeSectionId,
 }: {
+  activeTab: DocTab;
+  onTabChange: (tab: DocTab) => void;
   activeSectionId: string | null;
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const groups = (t.groups as Record<DocTab, SidebarGroup[]>)[activeTab];
 
   return (
     <aside className="col-span-12 md:col-span-3">
+      <DocTabs active={activeTab} onChange={onTabChange} />
+
       <div className="md:hidden">
         <button
           type="button"
@@ -184,7 +194,7 @@ export function DocsSidebar({
 
         {mobileOpen && (
           <nav className="mt-3 max-h-[60vh] overflow-y-auto rounded-lg border border-slate-200 bg-white p-4 text-sm shadow-sm">
-            {(t.groups as SidebarGroup[]).map((group) => (
+            {groups.map((group) => (
               <CollapsibleSidebarGroup
                 key={group.title}
                 group={group}
@@ -196,7 +206,7 @@ export function DocsSidebar({
       </div>
 
       <nav className="sticky top-20 hidden space-y-6 text-sm md:block">
-        {(t.groups as SidebarGroup[]).map((group) => (
+        {groups.map((group) => (
           <CollapsibleSidebarGroup
             key={group.title}
             group={group}

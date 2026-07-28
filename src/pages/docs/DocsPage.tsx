@@ -3,10 +3,19 @@ import { memo, useEffect, useRef, useState } from "react";
 import { DocsHeader } from "./components/DocsHeader";
 import { DocsSidebar } from "./components/DocsSidebar";
 import { DocSection } from "./components/DocSection";
+import { type DocTab } from "./components/DocTabs";
 import { Footer } from "@/components/ui/layout/Footer";
 import t from "@/content/docs.json";
 
-const DocsContent = memo(function DocsContent() {
+const DocsContent = memo(function DocsContent({
+  activeTab,
+}: {
+  activeTab: DocTab;
+}) {
+  const docSections = t.docSections.filter((s) =>
+    (s.tabs as DocTab[]).includes(activeTab),
+  );
+
   return (
     <main className="col-span-12 space-y-12 md:col-span-9 md:space-y-20">
       <div>
@@ -23,7 +32,7 @@ const DocsContent = memo(function DocsContent() {
         </p>
       </div>
 
-      {t.docSections.map((s) => (
+      {docSections.map((s) => (
         <DocSection
           key={s.id}
           id={s.id}
@@ -39,6 +48,8 @@ const DocsContent = memo(function DocsContent() {
 });
 
 export function DocsPage() {
+  const [activeTab, setActiveTab] = useState<DocTab>("agents");
+
   const initialSectionId = t.docSections[0]?.id ?? null;
 
   const [activeSectionId, setActiveSectionId] = useState<string | null>(
@@ -49,7 +60,9 @@ export function DocsPage() {
   const tickingRef = useRef(false);
 
   useEffect(() => {
-    const sectionIds = t.docSections.map((section) => section.id);
+    const sectionIds = t.docSections
+      .filter((section) => (section.tabs as DocTab[]).includes(activeTab))
+      .map((section) => section.id);
 
     function getSectionPositions() {
       return sectionIds
@@ -121,16 +134,20 @@ export function DocsPage() {
       window.removeEventListener("resize", requestUpdateActiveSection);
       window.removeEventListener("load", requestUpdateActiveSection);
     };
-  }, []);
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <DocsHeader />
 
       <div className="mx-auto grid max-w-7xl grid-cols-12 gap-6 px-4 py-6 sm:px-6 sm:py-8 md:gap-10 md:py-10">
-        <DocsSidebar activeSectionId={activeSectionId} />
+        <DocsSidebar
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          activeSectionId={activeSectionId}
+        />
 
-        <DocsContent />
+        <DocsContent activeTab={activeTab} />
       </div>
       <Footer />
     </div>

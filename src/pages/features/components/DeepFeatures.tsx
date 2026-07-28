@@ -10,6 +10,13 @@ import {
   LineChart,
   GitBranch,
   FileCheck,
+  Waypoints,
+  Scale,
+  ListChecks,
+  Gauge,
+  Coins,
+  MessageSquare,
+  Repeat2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -28,6 +35,13 @@ const ICONS: Record<string, LucideIcon> = {
   LineChart,
   GitBranch,
   FileCheck,
+  Waypoints,
+  Scale,
+  ListChecks,
+  Gauge,
+  Coins,
+  MessageSquare,
+  Repeat2,
 };
 
 function ExecutionEngineBadge() {
@@ -38,17 +52,29 @@ function ExecutionEngineBadge() {
   );
 }
 
-export function DeepFeatures() {
+type DeepData = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  items: Array<{
+    icon: string;
+    title: string;
+    body: string;
+    kubeflowOnly?: boolean;
+  }>;
+};
+
+export function DeepFeatures({ data = t.deep }: { data?: DeepData }) {
   return (
     <section className="border-b border-slate-200 bg-white py-20">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
-          eyebrow={t.deep.eyebrow}
-          title={t.deep.title}
-          subtitle={t.deep.subtitle}
+          eyebrow={data.eyebrow}
+          title={data.title}
+          subtitle={data.subtitle}
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {t.deep.items.map((item) => {
+          {data.items.map((item) => {
             const Icon = ICONS[item.icon];
             return (
               <div

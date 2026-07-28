@@ -7,6 +7,13 @@ import screenExplainability from "@/assets/screen-explainability.png";
 import screenExperiments from "@/assets/screen-experiments.png";
 import screenWorkflow from "@/assets/screen-workflow.png";
 import instanceView from "@/assets/instance-view.png";
+import agentsOverview from "@/assets/agents-overview.png";
+import agentsTraceGraph from "@/assets/agents-trace-graph.png";
+import agentsTraceEval from "@/assets/agents-trace-eval.png";
+import agentsVerdictDiff from "@/assets/agents-verdict-diff.png";
+import agentsTracesQuality from "@/assets/agents-traces-quality.png";
+import agentsTracesAgents from "@/assets/agents-traces-agents.png";
+import agentsTraceReplay from "@/assets/agents-trace-replay.png";
 import t from "@/content/features.json";
 import { SectionHeader } from "./SectionHeader";
 import { BrowserFrame } from "../../../components/ui/content/BrowserFrame";
@@ -18,6 +25,12 @@ const IMAGES: Record<string, string> = {
   screenExperiments,
   screenWorkflow,
   instanceView,
+  agentsOverview,
+  agentsTraceGraph,
+  agentsTraceEval,
+  agentsVerdictDiff,
+  agentsTracesQuality,
+  agentsTracesAgents,
 };
 
 type Feature = {
@@ -174,7 +187,11 @@ function StickyFeatureScroller({ features }: { features: Feature[] }) {
             </ul>
             <div className="mt-6">
               <BrowserFrame>
-                <img src={f.image} alt={f.title} className="block w-full" />
+                <img
+                  src={f.image}
+                  alt={f.title}
+                  className="block aspect-[16/9] w-full object-cover object-top"
+                />
               </BrowserFrame>
             </div>
           </div>
@@ -184,8 +201,21 @@ function StickyFeatureScroller({ features }: { features: Feature[] }) {
   );
 }
 
-export function FeatureShowcase() {
-  const features: Feature[] = t.showcase.features.map((f) => ({
+type ShowcaseData = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  features: Array<{
+    eyebrow: string;
+    title: string;
+    body: string;
+    bullets: string[];
+    image: string;
+  }>;
+};
+
+export function FeatureShowcase({ data = t.showcase }: { data?: ShowcaseData }) {
+  const features: Feature[] = data.features.map((f) => ({
     eyebrow: f.eyebrow,
     title: f.title,
     body: f.body,
@@ -196,9 +226,9 @@ export function FeatureShowcase() {
     <section className="border-b border-slate-200 bg-slate-50/60 py-20">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
-          eyebrow={t.showcase.eyebrow}
-          title={t.showcase.title}
-          subtitle={t.showcase.subtitle}
+          eyebrow={data.eyebrow}
+          title={data.title}
+          subtitle={data.subtitle}
         />
         <StickyFeatureScroller features={features} />
       </div>
