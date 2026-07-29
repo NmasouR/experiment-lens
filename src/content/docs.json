@@ -361,7 +361,7 @@
         },
         {
           "title": "Run it",
-          "content": "With MLflow, Langfuse, and Ollama all reachable, run:<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">python rag_experiment.py</code></pre><br/>The script prints the generated answer, the computed metrics, the MLflow run ID, and the Langfuse trace URL."
+          "content": "With MLflow, Langfuse, and Ollama all reachable, run:<br/><br/><pre class=\"mt-2 rounded-lg bg-slate-900 p-3 text-xs text-slate-100 overflow-x-auto\"><code class=\"language-bash\">python rag_experiment.py</code></pre><br/>The script prints the generated answer, the computed metrics, the MLflow run ID, and the Langfuse trace URL. After running the script, open ExperimentLens, select the docs_minimal_rag experiment, and inspect the logged run."
         }
       ]
     }
