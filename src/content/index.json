@@ -13,7 +13,7 @@
     "titlePre": "Trace, evaluate and ",
     "titleHighlight": "explain ",
     "titlePost": "your agents, LLM apps and ML experiments.",
-    "subtitle": "ExperimentLens brings visual analytics to agentic systems.It captures full traces, LLM-as-judge verdicts and deterministic checks for every run — so you can see exactly how your agents retrieve, reason and answer.<br/>Each experiment run links to one or many traces, side by side with the parameters and metrics you already track. It's still the same dashboard for classic ML experiment tracking, comparison and explainability.",
+    "subtitle": "ExperimentLens brings visual analytics to agentic systems. It captures full traces, LLM-as-judge verdicts and deterministic checks for every run — so you can see exactly how your agents retrieve, reason and answer.<br/>Each experiment run links to one or more traces, side by side with the parameters and metrics you already track. It remains the same dashboard for classic ML experiment tracking, comparison and explainability.",
     "primaryCta": "Open live demo",
     "secondaryCta": "Explore agent features",
     "imageAlt": "ExperimentLens agentic overview dashboard with parallel coordinates plot",
@@ -32,24 +32,24 @@
       {
         "icon": "Scale",
         "title": "Judges & verdicts",
-        "body": "LLM-as-judge scores sit next to deterministic checks like citation validity and exact match — as one pass/fail verdict grid."
+        "body": "LLM-as-judge scores sit next to deterministic checks like citation validity and exact match — in a single pass/fail verdict grid."
       },
       {
         "icon": "GitCompare",
         "title": "Compare sessions",
-        "body": "Line runs up side by side: judge pass-rates, token usage, cumulative latency races and a verdict diff that flags every regression and fix between configurations."
+        "body": "Compare runs up side by side: judge pass-rates, token usage, cumulative latency races and a verdict diff that flags every regression and fix between configurations."
       },
       {
         "icon": "Gauge",
         "title": "Agent performance",
-        "body": "Per-agent latency, call frequency and quality breakdowns reveal which step is slowing you down or dragging quality."
+        "body": "Per-agent latency, call frequency and quality breakdowns reveal which step is slowing you down or reducing overall quality."
       }
     ]
   },
   "agenticShowcase": {
     "eyebrow": "Inside the agentic view",
     "title": "Traces, verdicts and dashboards — in one lens.",
-    "subtitle": "The same run you launch as an experiment, explorable down to a single LLM call.",
+    "subtitle": "Explore the same run you launch as an experiment, all the way down to a single LLM call.",
     "cards": [
       { "title": "Per-trace evaluation", "sub": "Judges · checks · metrics · rationale", "image": "agentsTraceEval" },
       { "title": "Question & answer", "sub": "Full answer with citations", "image": "agentsTraceQa" },
@@ -82,16 +82,16 @@
       {
         "icon": "Plug",
         "title": "Tracker- & engine-agnostic",
-        "body": "Adapter interface to MLflow today, with Kubeflow as the execution engine. Airflow and other backends are on the roadmap."
+        "body": "An adapter-based interface supports MLflow today, with Kubeflow serving as the execution engine. Airflow and other backends are on the roadmap."
       },
       {
         "icon": "BarChart3",
         "title": "Visual analytics, not just tables",
-        "body": "Parallel coordinates, comparative metric views, group-by, filters and color encodings — designed to make 100s of runs legible at a glance."
+        "body": "Parallel coordinates, comparative metric views, grouping, filters and color encodings — designed to make hundreds of runs legible at a glance."
       },
       {
         "icon": "Lightbulb",
-        "title": "Explainability built-in",
+        "title": "Built-in explainability",
         "body": "Feature importance, Partial Dependence (PDP), Accumulated Local Effects (ALE) and counterfactual views wired directly to your runs."
       }
     ]
@@ -103,7 +103,7 @@
     "slides": [
       { "title": "Visualize the metrics you log.", "image": "screenOverview" },
       { "title": "Analyze runs side-by-side.", "image": "screenComparative" },
-      { "title": "Artifact and Data Inspection", "image": "screenArtifact" },
+      { "title": "Inspect artifacts and data.", "image": "screenArtifact" },
       { "title": "Explain your model decisions.", "image": "screenExplainability" },
       { "title": "Inspect your workflows.", "image": "screenWorkflow" }
     ],
@@ -118,7 +118,7 @@
         "icon": "Waypoints",
         "tag": "Trace observability",
         "name": "Langfuse",
-        "body": "Instruments your agents and LLM apps. ExperimentLens reads Langfuse traces directly, so every span, generation, judge and check maps back to the run that produced it.",
+        "body": "Langfuse captures traces from your agents and LLM applications. ExperimentLens reads those traces directly, so every span, generation, judge and check maps back to the run that produced it.",
         "points": [
           "Spans, generations & retrievers per trace",
           "LLM-as-judge verdicts & deterministic checks",
@@ -129,7 +129,7 @@
         "icon": "LineChart",
         "tag": "Tracker",
         "name": "MLflow",
-        "body": "Logs runs, parameters, metrics and artifacts. ExperimentLens reads MLflow experiments directly so every visualization, comparison and explanation maps back to a real MLflow run.",
+        "body": "Logs runs, parameters, metrics and artifacts. ExperimentLens reads MLflow experiments directly so every visualization, comparison and explanation maps back to a real run.",
         "points": [
           "Experiment & run discovery",
           "Parameters, metrics, tags & artifacts",
@@ -140,22 +140,22 @@
         "icon": "Workflow",
         "tag": "Execution engine",
         "name": "Kubeflow",
-        "body": "Runs the underlying pipelines on Kubernetes. ExperimentLens surfaces Kubeflow pipeline executions as first-class workflows you can inspect, compare and explain.",
+        "body": "Kubeflow runs the underlying pipelines on Kubernetes. ExperimentLens surfaces Kubeflow pipeline executions as first-class workflows you can inspect, compare and explain.",
         "points": [
           "Kubeflow Pipelines as experiments",
           "Task-level status & artifact tracking",
-          "Re-launch / steer modified pipelines"
+          "Relaunch and steer modified pipelines"
         ]
       }
     ],
-    "footnote": "Adapter-based design — additional trackers and engines (e.g. Airflow) can be added without changing the UI."
+    "footnote": "Adapter-based design — additional trackers and execution engines, such as Airflow, can be integrated without changing the UI."
   },
   "howItWorks": {
     "eyebrow": "How it works",
     "title": "From pipeline to insight in three steps.",
     "steps": [
-      { "n": "01", "icon": "Workflow", "title": "Orchestrate", "body": "Author your experiment as an execution engine pipeline. ExperimentLens picks it up as a first-class workflow." },
-      { "n": "02", "icon": "LineChart", "title": "Track", "body": "Each run logs parameters, metrics and artifacts to the tracker — automatically surfaced in the dashboard." },
+      { "n": "01", "icon": "Workflow", "title": "Orchestrate", "body": "Define your experiment as a pipeline in your execution engine. ExperimentLens surfaces it as a first-class workflow." },
+      { "n": "02", "icon": "LineChart", "title": "Track", "body": "Each run logs parameters, metrics and artifacts to the tracker, which ExperimentLens automatically surfaces in the dashboard." },
       { "n": "03", "icon": "Eye", "title": "Explore & explain", "body": "Compare runs visually, drill into artifacts and apply explainability methods without leaving the UI." }
     ],
     "architecture": [
@@ -178,16 +178,16 @@
   "repos": {
     "eyebrow": "Open source",
     "title": "Three repositories, one platform.",
-    "subtitle": "ExperimentLens is developed in the open within the ExtremeXP project.",
+    "subtitle": "ExperimentLens is developed as an open-source project within the ExtremeXP project.",
     "viewCta": "View on GitHub",
     "items": [
       { "name": "vis-frontend", "desc": "The ExperimentLens React frontend — dashboards, charts and explainability views.", "repoKey": "frontend" },
-      { "name": "vis-api", "desc": "Backend adapter API connecting tracker, execution engine and the frontend.", "repoKey": "api" },
-      { "name": "extremexp-explainability-module", "desc": "Explainability methods (PDP, ALE, feature importance, counterfactuals).", "repoKey": "explain" }
+      { "name": "vis-api", "desc": "The ExperimentLens backend adapter API — connecting trackers, execution engines and the frontend.", "repoKey": "api" },
+      { "name": "extremexp-explainability-module", "desc": "The ExperimentLens explainability module — PDP, ALE, feature importance and counterfactual methods.", "repoKey": "explain" }
     ]
   },
   "footer": {
-    "tagline": "Visual analytics & explainability for ML experiments. Built within the ExtremeXP project.",
+    "tagline": "Visual analytics, observability & explainability for agents, LLM applications and ML experiments. Built within the ExtremeXP project.",
     "copyright": "ExperimentLens",
     "columns": [
       {

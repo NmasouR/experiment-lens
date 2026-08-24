@@ -1,17 +1,17 @@
 {
   "meta": {
     "title": "Features — ExperimentLens",
-    "description": "Every capability ExperimentLens ships — for agents & LLMs ( traces, judges, verdicts, session comparison) and for ML experiments (parallel-coordinates analysis, comparative views, explainability, workflow drill-down).",
+    "description": "Every capability available in ExperimentLens — for agents & LLMs (traces, judges, verdicts, session comparison) and for ML experiments (parallel-coordinates analysis, comparative views, explainability, workflow drill-down).",
     "ogTitle": "Features — ExperimentLens",
-    "ogDescription": "The full feature surface of ExperimentLens — observability & explainability for agents, LLMs and ML experiments."
+    "ogDescription": "The full feature set of ExperimentLens — observability & explainability for agents, LLMs and ML experiments."
   },
   "hero": {
     "eyebrow": "Features",
-    "title": "The full surface of ExperimentLens.",
+    "title": "The full feature set of ExperimentLens.",
     "subtitle": "ExperimentLens is the <strong>visualization layer</strong> on top of your agent stack, tracking server and execution engine. It makes every trace, verdict, metric, parameter and artifact <em>you</em> capture explorable, comparable and explainable."
   },
   "tabs": {
-    "eyebrow": "Choose a surface",
+    "eyebrow": "Explore by area",
     "ml": "ML Experiments",
     "agents": "Agents & LLMs"
   },
@@ -23,19 +23,19 @@
       "features": [
         {
           "eyebrow": "One experiment table",
-          "title": "Agentic runs sit beside your ML runs.",
-          "body": "Every agentic configuration is a run in the same overview — parameters, metrics and a parallel-coordinates view — so you compare RAG settings like chunk size, search type and prompt exactly the way you compare model hyperparameters.",
+          "title": "Agent and LLM runs sit alongside your ML runs.",
+          "body": "Every agentic configuration is a run in the same overview — parameters, metrics and a parallel coordinates plot — so you compare RAG settings like chunk size, search type and prompt exactly the way you compare model hyperparameters.",
           "bullets": [
             "Shared run table for agentic and ML experiments",
             "Parallel coordinates over agentic parameters",
-            "One run links to one or many traces"
+            "One run links to one or more traces"
           ],
           "image": "agentsOverview"
         },
         {
           "eyebrow": "Trace observability",
           "title": "Follow every span from retrieval to answer.",
-          "body": "Records each observation — retriever, LLM call and judges — as a connected trace. Inspect inputs, outputs, latency, tokens and cost per step, or open the graph view to see the whole run at once.",
+          "body": "Surfaces each observation — retrieval steps, LLM calls and judge evaluations — as part of a connected trace. Inspect inputs, outputs, latency, tokens and cost per step, or open the graph view to see the whole run at once.",
           "bullets": [
             "Spans, generations, retrievers & events per trace",
             "Per-observation latency, tokens and cost",
@@ -46,7 +46,7 @@
         {
           "eyebrow": "Evaluation",
           "title": "Judges and checks on every answer.",
-          "body": "Each trace is scored by LLM-as-judge dimensions and deterministic checks, rolled up into a single pass-rate. Read the rationale behind every verdict — including why a check failed.",
+          "body": "Each trace is evaluated across LLM-as-judge dimensions and deterministic checks, with the results rolled up into a single pass rate. Read the rationale behind every verdict — including why a check failed.",
           "bullets": [
             "Correctness, groundedness, relevance, completeness & conciseness judges",
             "Deterministic checks: citation validity, exact match, keyword presence, latency",
@@ -59,7 +59,7 @@
           "title": "Compare configurations side by side.",
           "body": "Select any subset of runs and switch between summary, timeline and verdict views. Mosaic charts, a cumulative latency race and a verdict diff highlight exactly what changed — every regression and fix.",
           "bullets": [
-            "Mosaic & stacked summaries for latency, tokens and pass %",
+            "Mosaic & stacked summaries for latency, tokens and pass rate",
             "Cumulative latency race across the run timeline",
             "Verdict diff that flags each regression and fix"
           ],
@@ -68,10 +68,10 @@
         {
           "eyebrow": "Usage & quality analytics",
           "title": "Dashboards for cost, latency and quality.",
-          "body": "Aggregate sessions, traces, tokens, cost and judge pass-rates in one place. Drill into per-trace pass/fail across judges, or into score distributions for every metric and check.",
+          "body": "View sessions, traces, tokens, cost and judge pass rates in one place. Drill into per-trace pass/fail across judges, or into score distributions for every metric and check.",
           "bullets": [
             "Session, trace, token, cost and error roll-ups",
-            "Per-trace judge pass/fail with latency & tokens",
+            "Per-trace judge results with latency & token usage",
             "Verdict pass-rates and full score distributions"
           ],
           "image": "agentsTracesQuality"
@@ -79,11 +79,11 @@
         {
           "eyebrow": "Agent performance",
           "title": "See which agent step is the bottleneck.",
-          "body": "Per-agent latency and call-frequency breakdowns separate the retriever, generator and judges, so you can tell where time and tokens actually go before you optimize.",
+          "body": "Per-agent latency and call frequency breakdowns separate the retriever, generator and judges, so you can tell where time and tokens actually go before you optimize.",
           "bullets": [
             "Per-agent average latency by span type",
             "Call frequency per agent across the session",
-            "Isolate retriever vs. generator vs. judge cost"
+            "Break down costs across retrievers, generators and judges"
           ],
           "image": "agentsTracesAgents"
         }
@@ -91,11 +91,11 @@
     },
     "deep": {
       "eyebrow": "In depth",
-      "title": "The full agentic feature surface.",
+      "title": "The complete agent and LLM feature set.",
       "subtitle": "Everything ExperimentLens ships for agents and LLM apps, at a glance.",
       "items": [
-        { "icon": "Waypoints", "title": "Trace ingestion", "body": "Every run links to one or many traces — spans, generations, retrievers and events." },
-        { "icon": "Scale", "title": "LLM-as-judge verdicts", "body": "Define your own judges when you set up the experiment — get pass/fail verdicts with written rationale." },
+        { "icon": "Waypoints", "title": "Trace ingestion", "body": "Every run links to one or more traces — spans, generations, retrievers and events." },
+        { "icon": "Scale", "title": "LLM-as-judge verdicts", "body": "Define your own judges when setting up the experiment and receive pass/fail verdicts with written rationale." },
         { "icon": "ListChecks", "title": "Deterministic checks", "body": "Configure citation validity, exact match, keyword presence, latency checks, retrieval hit/recall and more for your experiment — scored automatically once defined." },
         { "icon": "GitCompare", "title": "Verdict diff", "body": "A per-question grid across runs that flags regressions and fixes between judge and check outcomes." },
         { "icon": "Gauge", "title": "Per-agent performance", "body": "Latency and call-frequency breakdowns per agent step, plus session-level P95, tokens and cost." },
@@ -106,14 +106,14 @@
     }
   },
   "showcase": {
-    "eyebrow": "ML Capabilities",
+    "eyebrow": "ML capabilities",
     "title": "What you can do in ExperimentLens.",
     "subtitle": "",
     "features": [
       {
         "eyebrow": "Run & configuration analysis",
         "title": "Find the configuration that actually moves the metric.",
-        "body": "Plot hundreds of runs on a single linked parallel-coordinates view. Brush an axis, watch the table filter. Group by any hyperparameter, color by any metric — and see which choices matter before you launch another sweep.",
+        "body": "Plot hundreds of runs on a single linked parallel-coordinates view. Brush an axis and watch the table filter in real time. Group by any hyperparameter, color by any metric — and see which choices matter before you launch another sweep.",
         "bullets": [
           "Multi-axis parallel coordinates with live brushing",
           "Group, color and filter by any logged parameter",
@@ -123,17 +123,17 @@
       },
       {
         "eyebrow": "Comparative analysis",
-        "title": "Compare runs side-by-side across metrics, models and data.",
+        "title": "Compare runs side by side across metrics, models and data.",
         "body": "Select any subset of runs and switch between Metrics, Models and Data tabs. Mosaic and stacked layouts let you spot regressions and tradeoffs in the metrics you logged.",
         "bullets": [
           "Mosaic & stacked metric layouts",
           "Cross-run model & dataset diffs",
-          "Status-aware comparison (completed / scheduled)"
+          "Status-aware comparison (completed/scheduled)"
         ],
         "image": "screenComparative"
       },
       {
-        "eyebrow": "Pipeline Control & Steering",
+        "eyebrow": "Pipeline control & steering",
         "title": "From monitoring to steering.",
         "body": "Monitor and steer pipeline executions at runtime, guided by intermediate results and visual feedback. Use diagnostic views to adjust configuration choices and re-launch modified pipelines.",
         "bullets": [
@@ -157,10 +157,10 @@
       {
         "eyebrow": "Workflow details",
         "title": "Drill into a single workflow's parameters, metrics & artifacts.",
-        "body": "Inspect the exact parameters, metrics and artifacts that the run logged to the tracking server. Ratings and status help curate the runs that matter.",
+        "body": "Inspect the exact parameters, metrics and artifacts that the run logged to the tracking server. Use ratings and status to curate the runs that matter.",
         "bullets": [
           "Parameters, metrics & artifacts pane",
-          "Run rating & status surfacing",
+          "Run ratings & status",
           "Direct link from any comparative view"
         ],
         "image": "screenWorkflow"
@@ -170,21 +170,21 @@
   "deep": {
     "eyebrow": "In depth",
     "title": "The full ML feature surface.",
-    "subtitle": "Everything ExperimentLens currently ships for ml experiments, at a glance.",
+    "subtitle": "Everything ExperimentLens currently ships for ML experiments, at a glance.",
     "ExecutionEngineBadge": "Execution engine only",
     "items": [
-      { "icon": "GitCompare", "title": "Comparative analysis", "body": "Mosaic & stacked layouts to diff metrics, models and datasets across selected runs." },
-      { "icon": "FileCheck", "title": "Run Inspection", "body": "Inspect the exact parameters, metrics and artifacts that the run logged to the tracking server. Ratings and status help curate the runs that matter." },
+      { "icon": "GitCompare", "title": "Comparative analysis", "body": "Mosaic & stacked layouts to compare metrics, models and datasets across selected runs." },
+      { "icon": "FileCheck", "title": "Run Inspection", "body": "Inspect the exact parameters, metrics and artifacts that the run logged to the tracking server. Use ratings and status to curate the runs that matter." },
       { "icon": "Activity", "title": "Pipeline monitoring", "body": "Track pipeline progress (completed / running / failed) and steer human-in-the-loop refinements.", "kubeflowOnly": true },
       { "icon": "Database", "title": "Artifact & data inspection", "body": "Preview inputs, outputs, predictions and intermediate artifacts in context with the run." },
       { "icon": "Lightbulb", "title": "Integrated Explainability", "body": "Apply post-hoc explainability methods like counterfactual examples, PDP, and ALE directly inside the experiment context." },
-      { "icon": "Boxes", "title": "Extensible adapter API", "body": "Add a new tracker or engine without touching the frontend — the adapter contract is the only seam." },
+      { "icon": "Boxes", "title": "Extensible adapter API", "body": "Add a new tracker or engine without touching the frontend." },
       { "icon": "GitBranch", "title": "Run Steering", "body": "Use diagnostic views to adjust configuration choices and re-launch modified pipelines as part of the same experiment.", "kubeflowOnly": true }
     ]
   },
   "cta": {
-    "title": "See these features on a real experiment.",
-    "subtitle": "A public deployment running a real fairness-aware classification experiment.",
+    "title": "See these features in action.",
+    "subtitle": "Explore a public deployment running a real fairness-aware classification experiment.",
     "primary": "Open the live demo",
     "secondary": "Source on GitHub",
     "tertiary": "Docs"
