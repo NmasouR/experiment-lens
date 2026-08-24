@@ -12,9 +12,9 @@ export function AgenticHero() {
       <div className="pointer-events-none absolute inset-0 [background:radial-gradient(60%_50%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]" />
       <div className="relative mx-auto max-w-7xl px-6 pb-14 pt-16 md:pt-24">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-white/80 px-3 py-1 text-xs font-semibold text-sky-700 shadow-sm">
+          {/* <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-white/80 px-3 py-1 text-xs font-semibold text-sky-700 shadow-sm">
             <Sparkles className="h-3.5 w-3.5" /> {t.agenticHero.badge}
-          </span>
+          </span> */}
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
             {t.agenticHero.titlePre}
             <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent">

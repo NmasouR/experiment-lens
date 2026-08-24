@@ -30,7 +30,7 @@ export function Repos() {
                 {r.desc}
               </p>
               <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-900">
-                {t.repos.viewCta}{" "}
+                {t.repos.viewCta}
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
               </span>
             </a>
