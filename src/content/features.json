@@ -101,7 +101,8 @@
         { "icon": "Gauge", "title": "Per-agent performance", "body": "Latency and call-frequency breakdowns per agent step, plus session-level P95, tokens and cost." },
         { "icon": "Coins", "title": "Token & cost tracking", "body": "Prompt and completion tokens with cost aggregated per observation, per trace, per session and per experiment." },
         { "icon": "MessageSquare", "title": "Question & answer view", "body": "Read the full model answer with citations alongside the judge verdicts for that trace." },
-        { "icon": "Repeat2", "title": "Conversation replay", "body": "Edit a prompt on any observation and re-run the exact same call to compare outputs in place." }
+        { "icon": "Repeat2", "title": "Conversation replay", "body": "Edit a prompt on any observation and re-run the exact same call to compare outputs in place." },
+        { "icon": "PenLine", "title": "Human annotations", "body": "Rate and leave free-text notes directly on a trace or an individual span, capturing human evaluation alongside the automated judges and checks." }
       ]
     }
   },

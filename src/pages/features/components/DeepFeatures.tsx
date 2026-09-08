@@ -17,6 +17,7 @@ import {
   Coins,
   MessageSquare,
   Repeat2,
+  PenLine,
   type LucideIcon,
 } from "lucide-react";
 
@@ -42,6 +43,7 @@ const ICONS: Record<string, LucideIcon> = {
   Coins,
   MessageSquare,
   Repeat2,
+  PenLine,
 };
 
 function ExecutionEngineBadge() {
