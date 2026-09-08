@@ -18,6 +18,8 @@ import {
   MessageSquare,
   Repeat2,
   PenLine,
+  Highlighter,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -44,6 +46,8 @@ const ICONS: Record<string, LucideIcon> = {
   MessageSquare,
   Repeat2,
   PenLine,
+  Highlighter,
+  ShieldCheck,
 };
 
 function ExecutionEngineBadge() {
