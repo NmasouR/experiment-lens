@@ -11,7 +11,7 @@
   "agenticHero": {
     "badge": "New · Agent & LLM observability",
     "titlePre": "Trace, evaluate and ",
-    "titleHighlight": "explain ",
+    "titleHighlight": "observe ",
     "titlePost": "your agents, LLM apps and ML experiments.",
     "subtitle": "ExperimentLens brings visual analytics to agentic systems. It captures full traces, LLM-as-judge verdicts and deterministic checks for every run — so you can see exactly how your agents retrieve, reason and answer.<br/>Each experiment run links to one or more traces, side by side with the parameters and metrics you already track. It remains the same dashboard for classic ML experiment tracking, comparison and explainability.",
     "primaryCta": "Open live demo",
