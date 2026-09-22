@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 
-import agentsOverview from "@/assets/agents-overview.png";
+import agentsSessions from "@/assets/agents-sessions.png";
 import common from "@/content/common.json";
 import t from "@/content/index.json";
 import { BrowserFrame } from "../../../components/ui/content/BrowserFrame";
@@ -28,7 +28,7 @@ export function AgenticHero() {
           />
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={common.liveDemoUrl}
+              href={common.liveDemoUrlAgents}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
@@ -49,7 +49,7 @@ export function AgenticHero() {
           <div className="absolute -inset-x-10 -top-6 -bottom-6 -z-10 rounded-[2rem] bg-gradient-to-tr from-sky-200/40 via-indigo-200/30 to-fuchsia-200/30 blur-2xl" />
           <BrowserFrame>
             <img
-              src={agentsOverview}
+              src={agentsSessions}
               alt={t.agenticHero.imageAlt}
               className="block w-full"
             />

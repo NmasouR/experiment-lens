@@ -7,13 +7,14 @@ import screenExplainability from "@/assets/screen-explainability.png";
 import screenExperiments from "@/assets/screen-experiments.png";
 import screenWorkflow from "@/assets/screen-workflow.png";
 import instanceView from "@/assets/instance-view.png";
-import agentsOverview from "@/assets/agents-overview.png";
+import agentsSessions from "@/assets/agents-sessions.png";
 import agentsTraceGraph from "@/assets/agents-trace-graph.png";
 import agentsTraceEval from "@/assets/agents-trace-eval.png";
-import agentsVerdictDiff from "@/assets/agents-verdict-diff.png";
-import agentsTracesQuality from "@/assets/agents-traces-quality.png";
-import agentsTracesAgents from "@/assets/agents-traces-agents.png";
-import agentsTraceReplay from "@/assets/agents-trace-replay.png";
+import agentsTraceQa from "@/assets/agents-trace-qa.png";
+import agentsCompareVerdicts from "@/assets/agents-compare-verdicts.png";
+import agentsOverviewUsage from "@/assets/agents-overview-usage.png";
+import agentsOverviewQuality from "@/assets/agents-overview-quality.png";
+import agentsOverviewAgents from "@/assets/agents-overview-agents.png";
 import t from "@/content/features.json";
 import { SectionHeader } from "./SectionHeader";
 import { BrowserFrame } from "../../../components/ui/content/BrowserFrame";
@@ -25,12 +26,14 @@ const IMAGES: Record<string, string> = {
   screenExperiments,
   screenWorkflow,
   instanceView,
-  agentsOverview,
+  agentsSessions,
   agentsTraceGraph,
   agentsTraceEval,
-  agentsVerdictDiff,
-  agentsTracesQuality,
-  agentsTracesAgents,
+  agentsTraceQa,
+  agentsCompareVerdicts,
+  agentsOverviewUsage,
+  agentsOverviewQuality,
+  agentsOverviewAgents,
 };
 
 type Feature = {

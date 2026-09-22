@@ -3,15 +3,13 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-import agentsTraceEval from "@/assets/agents-trace-eval.png";
+import agentsOverviewUsage from "@/assets/agents-overview-usage.png";
 import agentsTraceQa from "@/assets/agents-trace-qa.png";
 import agentsTracePrompts from "@/assets/agents-trace-prompts.png";
-import agentsTraceGraph from "@/assets/agents-trace-graph.png";
-import agentsVerdictDiff from "@/assets/agents-verdict-diff.png";
-import agentsSessionSummary from "@/assets/agents-session-summary.png";
-import agentsSessionTimeline from "@/assets/agents-session-timeline.png";
-import agentsTracesUsage from "@/assets/agents-traces-usage.png";
-import agentsTracesAgents from "@/assets/agents-traces-agents.png";
+import agentsTraceReplay from "@/assets/agents-trace-replay.png";
+import agentsOverviewAgents from "@/assets/agents-overview-agents.png";
+import agentsCompareResponses from "@/assets/agents-compare-responses.png";
+import agentsCompareAnnotations from "@/assets/agents-compare-annotations.png";
 
 import {
   Carousel,
@@ -23,15 +21,13 @@ import t from "@/content/index.json";
 import { BrowserFrame } from "../../../components/ui/content/BrowserFrame";
 
 const IMAGES: Record<string, string> = {
-  agentsTraceEval,
+  agentsOverviewUsage,
   agentsTraceQa,
   agentsTracePrompts,
-  agentsTraceGraph,
-  agentsVerdictDiff,
-  agentsSessionSummary,
-  agentsSessionTimeline,
-  agentsTracesUsage,
-  agentsTracesAgents,
+  agentsTraceReplay,
+  agentsOverviewAgents,
+  agentsCompareResponses,
+  agentsCompareAnnotations,
 };
 
 export function AgenticShowcase() {

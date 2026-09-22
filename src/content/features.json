@@ -22,15 +22,26 @@
       "subtitle": "Every run links to its traces — explorable down to a single LLM call.",
       "features": [
         {
-          "eyebrow": "One experiment table",
-          "title": "Agent and LLM runs sit alongside your ML runs.",
-          "body": "Every agentic configuration is a run in the same overview — parameters, metrics and a parallel coordinates plot — so you compare RAG settings like chunk size, search type and prompt exactly the way you compare model hyperparameters.",
+          "eyebrow": "Sessions",
+          "title": "Every configuration becomes a session.",
+          "body": "Sessions get their own dedicated page: one row per session with every parameter and metric as a column, and a parallel-coordinates plot linked live to the table underneath — so you can see which settings actually move the metric you care about.",
           "bullets": [
-            "Shared run table for agentic and ML experiments",
-            "Parallel coordinates over agentic parameters",
-            "One run links to one or more traces"
+            "Dedicated Sessions page",
+            "One row per session, every logged parameter and metric as a column",
+            "Parallel coordinates plot linked live to the session table"
           ],
-          "image": "agentsOverview"
+          "image": "agentsSessions"
+        },
+        {
+          "eyebrow": "Monitoring overview",
+          "title": "A dashboard for sessions, traces, tokens, cost and quality.",
+          "body": "The Overview page opens on stat tiles and trend graphs — sessions, traces, latency, tokens, cost and judge pass rate — with a Detect issues panel that runs an LLM scan across a session's traces on demand and surfaces problems before you go looking for them.",
+          "bullets": [
+            "Trend charts for trace volume, latency and tokens per trace",
+            "Roll-up stat tiles across sessions, traces, cost and errors",
+            "One-click LLM scan that flags problem traces"
+          ],
+          "image": "agentsOverviewUsage"
         },
         {
           "eyebrow": "Trace observability",
@@ -41,7 +52,7 @@
             "Per-observation latency, tokens and cost",
             "List and graph views of the full trace"
           ],
-          "image": "agentsTraceGraph"
+          "image": "agentsTraceQa"
         },
         {
           "eyebrow": "Evaluation",
@@ -50,31 +61,31 @@
           "bullets": [
             "Correctness, groundedness, relevance, completeness & conciseness judges",
             "Deterministic checks: citation validity, exact match, keyword presence, latency",
-            "Per-check rationale and an overall pass-rate"
+            "Per-check rationale and an overall pass rate"
           ],
           "image": "agentsTraceEval"
         },
         {
           "eyebrow": "Session comparison",
           "title": "Compare configurations side by side.",
-          "body": "Select any subset of runs and switch between summary, timeline and verdict views. Mosaic charts, a cumulative latency race and a verdict diff highlight exactly what changed — every regression and fix.",
+          "body": "Select any subset of sessions and switch between summary, timeline, verdicts, responses, graph and human annotations.",
           "bullets": [
             "Mosaic & stacked summaries for latency, tokens and pass rate",
-            "Cumulative latency race across the run timeline",
-            "Verdict diff that flags each regression and fix"
+            "Verdict diff that flags each regression and fix, with rationale",
+            "Response diff and human annotations, side by side across sessions"
           ],
-          "image": "agentsVerdictDiff"
+          "image": "agentsCompareVerdicts"
         },
         {
-          "eyebrow": "Usage & quality analytics",
-          "title": "Dashboards for cost, latency and quality.",
-          "body": "View sessions, traces, tokens, cost and judge pass rates in one place. Drill into per-trace pass/fail across judges, or into score distributions for every metric and check.",
+          "eyebrow": "Quality analytics",
+          "title": "Verdict pass rates and score distributions, per experiment.",
+          "body": "The Overview page's Quality tab rolls every judge and check into pass-rate charts, then lets you drill into the full score distribution for each metric and check.",
           "bullets": [
-            "Session, trace, token, cost and error roll-ups",
-            "Per-trace judge results with latency & token usage",
-            "Verdict pass-rates and full score distributions"
+            "Verdict pass rates across every judge dimension",
+            "Full score distributions for every metric and check",
+            "Session, trace, token, cost and error roll-ups alongside the charts"
           ],
-          "image": "agentsTracesQuality"
+          "image": "agentsOverviewQuality"
         },
         {
           "eyebrow": "Agent performance",
@@ -85,7 +96,7 @@
             "Call frequency per agent across the session",
             "Break down costs across retrievers, generators and judges"
           ],
-          "image": "agentsTracesAgents"
+          "image": "agentsOverviewAgents"
         }
       ]
     },
@@ -95,6 +106,10 @@
       "subtitle": "Everything ExperimentLens ships for agents and LLM apps, at a glance.",
       "items": [
         { "icon": "Waypoints", "title": "Trace ingestion", "body": "Every run links to one or more traces — spans, generations, retrievers and events." },
+        { "icon": "LayoutDashboard", "title": "Overview dashboard", "body": "The Overview tab opens on stat tiles and trend graphs — sessions, traces, latency, tokens, cost and judge pass rate — across Usage, Quality and Agents sub-views." },
+        { "icon": "Users", "title": "Sessions tab", "body": "Sessions get their own tab: one row per session with every logged parameter and metric, plus the parallel-coordinates plot linked to the table." },
+        { "icon": "List", "title": "Traces tab", "body": "A dedicated Traces tab lists every trace across sessions, so you can search and filter without drilling in through a session first." },
+        { "icon": "ScanSearch", "title": "Automated trace scanning", "body": "Run an LLM scan across a session's traces straight from the Overview dashboard's Detect issues panel — it flags errors and low-quality or off-track answers before you go looking for them." },
         { "icon": "Scale", "title": "LLM-as-judge verdicts", "body": "Define your own judges when setting up the experiment and receive pass/fail verdicts with written rationale." },
         { "icon": "ListChecks", "title": "Deterministic checks", "body": "Configure citation validity, exact match, keyword presence, latency checks, retrieval hit/recall and more for your experiment — scored automatically once defined." },
         { "icon": "GitCompare", "title": "Verdict diff", "body": "A per-question grid across runs that flags regressions and fixes between judge and check outcomes." },

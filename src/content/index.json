@@ -16,7 +16,7 @@
     "subtitle": "ExperimentLens brings visual analytics to agentic systems. It captures full traces, LLM-as-judge verdicts and deterministic checks for every run — so you can see exactly how your agents retrieve, reason and answer.<br/>Each experiment run links to one or more traces, side by side with the parameters and metrics you already track. It remains the same dashboard for classic ML experiment tracking, comparison and explainability.",
     "primaryCta": "Open live demo",
     "secondaryCta": "Explore agent features",
-    "imageAlt": "ExperimentLens agentic overview dashboard with parallel coordinates plot",
+    "imageAlt": "ExperimentLens sessions page with parameter table and parallel coordinates plot",
     "imageCaption": "ExperimentLens dashboard: analyzing configuration effects on experiment performance."
   },
   "agenticValueProps": {
@@ -51,15 +51,12 @@
     "title": "Traces, verdicts and dashboards — in one lens.",
     "subtitle": "Explore the same run you launch as an experiment, all the way down to a single LLM call.",
     "cards": [
-      { "title": "Per-trace evaluation", "sub": "Judges · checks · metrics · rationale", "image": "agentsTraceEval" },
-      { "title": "Question & answer", "sub": "Full answer with citations", "image": "agentsTraceQa" },
+      { "title": "Overview dashboard", "sub": "Stats, trends & a one-click LLM trace scan", "image": "agentsOverviewUsage" },
+      { "title": "Question & answer", "sub": "Full answer, evaluation & rationale in one view", "image": "agentsTraceQa" },
       { "title": "Prompt inspection", "sub": "Every judge & generation prompt", "image": "agentsTracePrompts" },
-      { "title": "Trace graph", "sub": "Spans & observations, end to end", "image": "agentsTraceGraph" },
-      { "title": "Verdict diff across runs", "sub": "Regressions & fixes at a glance", "image": "agentsVerdictDiff" },
-      { "title": "Session summary", "sub": "Latency, tokens & judge pass %", "image": "agentsSessionSummary" },
-      { "title": "Cumulative latency race", "sub": "Where each run spends its time", "image": "agentsSessionTimeline" },
-      { "title": "Usage dashboards", "sub": "Per-session judges, tokens & cost", "image": "agentsTracesUsage" },
-      { "title": "Agent breakdown", "sub": "Per-agent latency & call frequency", "image": "agentsTracesAgents" }
+      { "title": "Agent breakdown", "sub": "Per-agent latency & call frequency", "image": "agentsOverviewAgents" },
+      { "title": "Response diff", "sub": "Compare answers across configurations", "image": "agentsCompareResponses" },
+      { "title": "Human annotations", "sub": "Rate and comment on every trace", "image": "agentsCompareAnnotations" }
     ],
     "cta": "Explore all agent features"
   },

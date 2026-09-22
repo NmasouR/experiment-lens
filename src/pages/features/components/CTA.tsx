@@ -4,7 +4,8 @@ import { ArrowRight, Github, Play } from "lucide-react";
 import common from "@/content/common.json";
 import t from "@/content/features.json";
 
-export function CTA() {
+export function CTA({ tab = "ml" }: { tab?: "agents" | "ml" }) {
+  const demoUrl = tab === "agents" ? common.liveDemoUrlAgents : common.liveDemoUrl;
   return (
     <section className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-sky-50/60 via-white to-white py-20 text-slate-900">
       <div className="pointer-events-none absolute inset-0 [background:radial-gradient(60%_50%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]" />
@@ -17,7 +18,7 @@ export function CTA() {
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           <a
-            href={common.liveDemoUrl}
+            href={demoUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"

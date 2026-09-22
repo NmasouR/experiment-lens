@@ -1,6 +1,7 @@
 {
   "brand": "ExperimentLens",
   "liveDemoUrl": "https://extreme-viz.pulsar.imsi.athenarc.gr/706300898836261706/monitoring",
+  "liveDemoUrlAgents": "https://extreme-viz.pulsar.imsi.athenarc.gr/714198661828850769/monitoring",
   "repos": {
     "frontend": "https://github.com/ExperimentLens/vis-frontend",
     "api": "https://github.com/ExperimentLens/vis-api",

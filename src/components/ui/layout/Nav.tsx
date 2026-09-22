@@ -29,7 +29,7 @@ export function Nav() {
         </nav>
         <div className="flex items-center gap-2">
           <a
-            href={common.liveDemoUrl}
+            href={common.liveDemoUrlAgents}
             target="_blank"
             rel="noreferrer"
             className="hidden items-center gap-2 rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 sm:inline-flex"
@@ -74,7 +74,7 @@ export function Nav() {
               {common.nav.docs}
             </Link>
             <a
-              href={common.liveDemoUrl}
+              href={common.liveDemoUrlAgents}
               target="_blank"
               rel="noreferrer"
               className="rounded-md px-3 py-2 hover:bg-slate-50 hover:text-slate-900 sm:hidden"

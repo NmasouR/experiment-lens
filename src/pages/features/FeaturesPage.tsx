@@ -35,7 +35,7 @@ export function FeaturesPage() {
           <DeepFeatures />
         </>
       )}
-      <CTA />
+      <CTA tab={tab} />
       <Footer />
     </div>
   );

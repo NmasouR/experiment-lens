@@ -20,6 +20,10 @@ import {
   PenLine,
   Highlighter,
   ShieldCheck,
+  LayoutDashboard,
+  Users,
+  List,
+  ScanSearch,
   type LucideIcon,
 } from "lucide-react";
 
@@ -48,6 +52,10 @@ const ICONS: Record<string, LucideIcon> = {
   PenLine,
   Highlighter,
   ShieldCheck,
+  LayoutDashboard,
+  Users,
+  List,
+  ScanSearch,
 };
 
 function ExecutionEngineBadge() {
