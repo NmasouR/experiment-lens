@@ -61,11 +61,10 @@
     "cta": "Explore all agent features"
   },
   "hero": {
-    "badge": "ExtremeXP · Horizon Europe project",
     "titlePre": "Explore, monitor and",
     "titleHighlight": " explain ",
     "titlePost": "complex ML pipelines.",
-    "subtitle": "ExperimentLens is a lightweight yet powerful visual dashboard for the interactive exploration, monitoring, and explainability of complex AI pipelines.<br/>Developed within the context of the <a href=\"https://extremexp.eu/\" target=\"_blank\" rel=\"noreferrer\" class=\"font-medium text-slate-900 hover:underline\">ExtremeXP project</a>, ExperimentLens empowers researchers, data scientists, and engineers to make sense of experimental results across multiple runs and interconnected tasks.",
+    "subtitle": "ExperimentLens is a lightweight yet powerful visual dashboard for the interactive exploration, monitoring, and explainability of complex AI pipelines.<br/>It empowers researchers, data scientists, and engineers to make sense of experimental results across multiple runs and interconnected tasks.",
     "primaryCta": "Open live demo",
     "secondaryCta": "Create your first experiment",
     "imageAlt": "ExperimentLens overview dashboard with parallel coordinates plot across 108 runs",
@@ -175,16 +174,16 @@
   "repos": {
     "eyebrow": "Open source",
     "title": "Three repositories, one platform.",
-    "subtitle": "ExperimentLens is developed as an open-source project within the ExtremeXP project.",
+    "subtitle": "ExperimentLens is developed as an open-source project.",
     "viewCta": "View on GitHub",
     "items": [
       { "name": "vis-frontend", "desc": "The ExperimentLens React frontend — dashboards, charts and explainability views.", "repoKey": "frontend" },
       { "name": "vis-api", "desc": "The ExperimentLens backend adapter API — connecting trackers, execution engines and the frontend.", "repoKey": "api" },
-      { "name": "extremexp-explainability-module", "desc": "The ExperimentLens explainability module — PDP, ALE, feature importance and counterfactual methods.", "repoKey": "explain" }
+      { "name": "explainability-module", "desc": "The ExperimentLens explainability module — PDP, ALE, feature importance and counterfactual methods.", "repoKey": "explain" }
     ]
   },
   "footer": {
-    "tagline": "Visual analytics, observability & explainability for agents, LLM applications and ML experiments. Built within the ExtremeXP project.",
+    "tagline": "Visual analytics, observability & explainability for agents, LLM applications and ML experiments.",
     "copyright": "ExperimentLens",
     "columns": [
       {
@@ -208,8 +207,7 @@
       {
         "title": "Project",
         "links": [
-          { "label": "ATHENA Research Center", "href": "https://www.athenarc.gr/", "external": true },
-          { "label": "ExtremeXP (Horizon Europe)", "href": "https://extremexp.eu/", "external": true }
+          { "label": "ATHENA Research Center", "href": "https://www.athenarc.gr/", "external": true }
         ]
       }
     ]

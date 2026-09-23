@@ -5,7 +5,7 @@
 ## About ExperimentLens
 **ExperimentLens** is a lightweight yet powerful visual dashboard for the interactive exploration, monitoring, and explainability of complex AI pipelines.
 
-Developed within the context of the [ExtremeXP project](https://extremexp.eu/), ExperimentLens empowers researchers, data scientists, and engineers to make sense of experimental results across multiple runs and interconnected tasks.
+ExperimentLens empowers researchers, data scientists, and engineers to make sense of experimental results across multiple runs and interconnected tasks.
 
 The tool is centered on **human-in-the-loop experimentation**, enabling users to monitor pipeline lifecycles, inspect results, and gain insights into pipeline behavior and configuration sensitivity.
 
@@ -63,7 +63,7 @@ The tool is centered on **human-in-the-loop experimentation**, enabling users to
 ExperimentLens is designed for flexibility and extensibility across diverse AI experimentation infrastructures.
 
 - **Experiment tracking integration**: Supports tools like **MLflow** for logging run-level metrics, parameters, and artifacts—enabling visual analysis of experiment outcomes.
-- **Workflow orchestration integration**: Connects with **workflow orchestration frameworks** to enable lifecycle control, task-level tracing, and dynamic adjustment of pipelines. Currently, the **ExtremeXP Execution Engine** is supported. Future integration is planned with additional tools such as **Kubeflow**, **Airflow**, and other orchestration platforms.
+- **Workflow orchestration integration**: Connects with **workflow orchestration frameworks** to enable lifecycle control, task-level tracing, and dynamic adjustment of pipelines. Currently, the **Kubeflow Execution Engine** is supported. Future integration is planned with additional tools such as **Airflow**, and other orchestration platforms.
 
 
 ## Get Involved
@@ -74,6 +74,6 @@ To learn more, contribute, or request a demo:
 
 - **Email**: [stavmars@athenarc.gr](mailto:stavmars@athenarc.gr), [gpapas@athenarc.gr](mailto:gpapas@athenarc.gr)
 - **GitHub Repositories**:
-  - [Frontend](https://github.com/extremexp-HORIZON/vis-frontend)
-  - [Backend API](https://github.com/extremexp-HORIZON/vis-api)
-  - [Explainability Module](https://github.com/extremexp-HORIZON/explainability-module)
+  - [Frontend](https://github.com/ExperimentLens/vis-frontend)
+  - [Backend API](https://github.com/ExperimentLens/vis-api)
+  - [Explainability Module](https://github.com/ExperimentLens/explainability-module)
